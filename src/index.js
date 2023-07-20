@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 
 import './style/index.css'
 
-import Login from './Login'
+import Home from './Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Login/>
+  <Home/>
 )
