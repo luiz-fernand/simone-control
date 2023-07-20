@@ -13,7 +13,7 @@ const NavBar = () => {
                 <Link className='nav-item' to='/'>Peças</Link>
                 <Link className='nav-item' to='/'>Clientes</Link>
             </nav>
-            <p>V0.1 - by: LZ TI</p>
+            <p style={{color: 'lightgray', fontSize: '10pt'}}>V0.1 - by: LZ TI</p>
         </header>
     )
 }
