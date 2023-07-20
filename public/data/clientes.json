@@ -1,0 +1,126 @@
+[
+    {
+        "id": 137,
+        "nome": "Marlene",
+        "referencia": "Diane",
+        "pecas": [
+            {
+                "id": 1,
+                "tipo": "Regata",
+                "descricao": "Hering c/ tule preta",
+                "tamanho": "XG",
+                "valor": 20,
+                "status": 0
+            }
+            ,{
+                "id": 2,
+                "tipo": "Blazer",
+                "descricao": "Cléo Aidar marrom c/ bege",
+                "tamanho": "46",
+                "valor": 40,
+                "status": 0
+            }
+            ,{
+                "id": 3,
+                "tipo": "Calça",
+                "descricao": "Linho caramelo alfaiataria",
+                "tamanho": "GG",
+                "valor": 35,
+                "status": 0
+            }
+        ]
+    }
+    ,{
+        "id": 155,
+        "nome": "Marília",
+        "referencia": "Loja nova",
+        "pecas": [
+            {
+                "id": 1,
+                "tipo": "Blusa",
+                "descricao": "Crochê laranja vazada",
+                "tamanho": "G",
+                "valor": 40,
+                "status": 0
+            }
+            ,{
+                "id": 2,
+                "tipo": "Saia",
+                "descricao": "Veludo cotelê forever 21",
+                "tamanho": "G",
+                "valor": 25,
+                "status": 0
+            }
+            ,{
+                "id": 3,
+                "tipo": "Saia",
+                "descricao": "Suede marrom botões",
+                "tamanho": "M",
+                "valor": 30,
+                "status": 0
+            }
+        ]
+    }
+    ,{
+        "id": 153,
+        "nome": "Ilda",
+        "referencia": "Mãe Daniane",
+        "pecas": [
+            {
+                "id": 1,
+                "tipo": "Vestido",
+                "descricao": "Liganete biografia",
+                "tamanho": "M",
+                "valor": 20,
+                "status": 0
+            }
+            ,{
+                "id": 2,
+                "tipo": "Vestido",
+                "descricao": "Liganete biografia",
+                "tamanho": "G",
+                "valor": 20,
+                "status": 0
+            }
+            ,{
+                "id": 3,
+                "tipo": "Vestido",
+                "descricao": "Viscolycra Biografia",
+                "tamanho": "M",
+                "valor": 30,
+                "status": 0
+            }
+        ]
+    }
+    ,{
+        "id": 152,
+        "nome": "Lucia Moreira",
+        "referencia": "",
+        "pecas": [
+            {
+                "id": 1,
+                "tipo": "Calça",
+                "descricao": "Sarja Vermelha Lunender",
+                "tamanho": "38",
+                "valor": 40,
+                "status": 0
+            }
+            ,{
+                "id": 2,
+                "tipo": "Calça",
+                "descricao": "Jeans JeansWear Clara Ziper",
+                "tamanho": "38",
+                "valor": 40,
+                "status": 0
+            }
+            ,{
+                "id": 3,
+                "tipo": "Calça",
+                "descricao": "Jeans Marisa Clara Estrelas",
+                "tamanho": "38",
+                "valor": 35,
+                "status": 0
+            }
+        ]
+    }
+]
