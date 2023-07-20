@@ -1,0 +1,33 @@
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background-color: black;
+    color: white;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 15pt;
+}
+
+.nav-item:hover {
+    background-color: rgb(20, 20, 20);
+}
