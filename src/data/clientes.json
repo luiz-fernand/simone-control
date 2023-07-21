@@ -3,7 +3,7 @@
         "id": 137,
         "nome": "Marlene",
         "referencia": "Diane",
-        "pecas": [
+        "produtos": [
             {
                 "id": 1,
                 "tipo": "Regata",
@@ -34,7 +34,7 @@
         "id": 152,
         "nome": "Lucia Moreira",
         "referencia": "",
-        "pecas": [
+        "produtos": [
             {
                 "id": 1,
                 "tipo": "Calça",
@@ -65,7 +65,7 @@
         "id": 153,
         "nome": "Ilda",
         "referencia": "Mãe Daniane",
-        "pecas": [
+        "produtos": [
             {
                 "id": 1,
                 "tipo": "Vestido",
@@ -96,7 +96,7 @@
         "id": 155,
         "nome": "Marília",
         "referencia": "Loja nova",
-        "pecas": [
+        "produtos": [
             {
                 "id": 1,
                 "tipo": "Blusa",

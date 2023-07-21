@@ -17,7 +17,7 @@ const Clientes = () => {
                     <div className='cod-cliente'>
                         <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
                         <p style={{flex: '2'}}><b>{clien.nome}</b></p>
-                        <p style={{flex: '1'}}>Produtos: {clien.pecas.length}</p>
+                        <p style={{flex: '1'}}>Produtos: {clien.produtos.length}</p>
                     </div>
                 ))}
             </div>

@@ -24,10 +24,12 @@ header {
     height: 75px;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     font-size: 15pt;
 }
 
 .nav-item:hover {
-    background-color: rgb(20, 20, 20);
+    background-color: #444444;
+    height: 70px;
+    border-bottom: 5px solid #ab2b33;
 }
