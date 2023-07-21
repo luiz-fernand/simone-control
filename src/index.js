@@ -4,8 +4,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import './style/index.css'
 
-import Home from './Home';
 import NavBar from './component/NavBar';
+import Home from './Home';
+import Clientes from './Clientes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
     <NavBar/>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/clientes' element={<Clientes/>}/>
     </Routes>
   </BrowserRouter>
 )
