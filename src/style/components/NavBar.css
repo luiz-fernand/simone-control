@@ -33,3 +33,8 @@ header {
     height: 70px;
     border-bottom: 5px solid #ab2b33;
 }
+
+nav a.active {
+    height: 70px;
+    border-bottom: 5px solid #ab2b33;
+}
