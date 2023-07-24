@@ -10,7 +10,7 @@
                 "descricao": "Hering c/ tule preta",
                 "tamanho": "XG",
                 "valor": 20,
-                "status": 0
+                "status": 2
             }
             ,{
                 "id": 2,
@@ -41,7 +41,7 @@
                 "descricao": "Sarja Vermelha Lunender",
                 "tamanho": "38",
                 "valor": 40,
-                "status": 0
+                "status": 1
             }
             ,{
                 "id": 2,
@@ -80,7 +80,7 @@
                 "descricao": "Liganete biografia",
                 "tamanho": "G",
                 "valor": 20,
-                "status": 0
+                "status": 2
             }
             ,{
                 "id": 3,

@@ -14,7 +14,7 @@ const Clientes = () => {
             </div>
             <div className="lista-clientes">
                 {ClientesJson.map(clien => (
-                    <div className='cod-cliente'>
+                    <div className='cod-cliente' key={clien.id}>
                         <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
                         <p style={{flex: '2'}}><b>{clien.nome}</b></p>
                         <p style={{flex: '1'}}>Produtos: {clien.produtos.length}</p>
