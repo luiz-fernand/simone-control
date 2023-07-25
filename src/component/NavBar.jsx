@@ -13,7 +13,7 @@ const NavBar = () => {
                 <NavLink className='nav-item' activeClassName='active' to='/clientes'>Clientes</NavLink>
                 <NavLink className='nav-item' activeClassName='active' to='/vendas'>Vendas</NavLink>
             </nav>
-            <p style={{color: 'lightgray', fontSize: '10pt'}}>V0.1 - by: LZ TI</p>
+            <p style={{color: 'lightgray', fontSize: '10pt'}}>V0.3 - by: LZ TI</p>
         </header>
     )
 }

@@ -5,7 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './style/index.css'
 
 import NavBar from './component/NavBar';
-import Home from './Home';
+import Inicio from './Inicio';
 import Clientes from './Clientes';
 import Produtos from './Produtos';
 
@@ -14,7 +14,7 @@ root.render(
   <BrowserRouter>
     <NavBar/>
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Inicio/>}/>
       <Route path='/produtos' element={<Produtos/>}/>
       <Route path='/clientes' element={<Clientes/>}/>
     </Routes>
