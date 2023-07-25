@@ -35,6 +35,7 @@ header {
 }
 
 nav a.active {
+    background-color: #101010;
     height: 70px;
     border-bottom: 5px solid #ab2b33;
 }

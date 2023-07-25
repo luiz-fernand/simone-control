@@ -42,7 +42,6 @@
   margin: 5px 15px;
   border-radius: 25px;
   text-align: center;
-  background-color: #c4c4c4;
   border: 1px solid #aaaaaa;
   font-size: 12pt;
   transition: all 0.3s ease-in-out;
@@ -52,5 +51,5 @@
 .cod-cliente:hover {
   border-color: #ab2b33;
   color: #ab2b33;
-  background-color: #aaaaaa;
+  width: 99%;
 }

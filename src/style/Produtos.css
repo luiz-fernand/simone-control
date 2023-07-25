@@ -29,7 +29,9 @@
   flex: 2;
   display: flex;
   margin-top: 80px;
-  overflow: auto;
+  max-height: 100vmin;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
   align-items: center;
   width: 100%;

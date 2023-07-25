@@ -40,7 +40,7 @@ const Produtos = () => {
         <div className="produtos-container">
             <div className="informacoes-produtos">
                 <h1 className='titulo-produtos'><GiClothes style={{marginRight: '10px'}}/> Produtos</h1>
-                <p>Nº DE PRODUTOS: <b>{np}</b></p>
+                <p style={{paddingTop: '1px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
                 <p>PRODUTOS DISPONIVEIS: <b>{pd}</b></p>
                 <p>PRODUTOS VENDIDOS: <b>{pv}</b></p>
                 <p>PRODUTOS PAGOS: <b>{pp}</b></p>
