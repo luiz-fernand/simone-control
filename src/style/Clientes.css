@@ -29,6 +29,7 @@
   flex: 2;
   display: flex;
   margin-top: 80px;
+  max-height: 87vmin;
   overflow-y: auto;
   overflow-x: hidden;
   flex-direction: column;
