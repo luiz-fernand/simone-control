@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import {Link} from 'react-router-dom'
+
 import ClientesJson from './data/clientes.json'
+
 import {GiClothes} from 'react-icons/gi'
+import {AiOutlinePlusCircle} from 'react-icons/ai'
+import ProdScreen from './component/ProdScreen'
+
 import './style/Produtos.css'
 
 const Produtos = () => {
@@ -9,6 +15,7 @@ const Produtos = () => {
     const [pv, setPv] = useState(0)
     const [pp, setPp] = useState(0)
     const [ProdList, setProdList] = useState([])
+    const [selectedProduct, setSelectedProduct] = useState(null);
   
     useEffect(() => {
         let totalProdutos = 0
@@ -24,7 +31,7 @@ const Produtos = () => {
                 else if (prod.status === 1) vendidos++
                 else if (prod.status === 2) pagos++
 
-                const itemLista = {id: `#${clien.id}-${prod.id}`, titulo: `${prod.tipo} ${prod.descricao}`, valor: `R$ ${prod.valor}`, status: prod.status}
+                const itemLista = {cliente: clien.id, id: `#${clien.id}-${prod.id}`, tipo: prod.tipo, titulo: `${prod.tipo} ${prod.descricao}`, valor: `R$ ${prod.valor}`, status: prod.status}
                 updateProdList.push(itemLista)
             })
         })
@@ -36,10 +43,21 @@ const Produtos = () => {
         setProdList(updateProdList)
     }, [])
 
+    const openProdScreen = (prod) => {
+        setSelectedProduct(prod)
+    };
+    
+    const closeProdScreen = () => {
+        setSelectedProduct(null)
+    }
+
     return (
         <div className="produtos-container">
             <div className="informacoes-produtos">
                 <h1 className='titulo-produtos'><GiClothes style={{marginRight: '10px'}}/> Produtos</h1>
+                <div className="produtos-acao-container">
+                    <Link><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR PRODUTO</Link>
+                </div>
                 <p style={{paddingTop: '1px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
                 <p>PRODUTOS DISPONIVEIS: <b>{pd}</b></p>
                 <p>PRODUTOS VENDIDOS: <b>{pv}</b></p>
@@ -47,13 +65,14 @@ const Produtos = () => {
             </div>
             <div className="lista-produtos">
                 {ProdList.map(prod => (
-                    <div className={'cod-produto' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} key={prod.id}>
+                    <div className={'cod-produto' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
                         <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{prod.id}</p>
                         <p style={{flex: '2'}}><b>{prod.titulo}</b></p>
                         <p style={{flex: '1'}}>{prod.valor}</p>
                     </div>
                 ))}
             </div>
+            {selectedProduct && <ProdScreen product={selectedProduct} onClose={closeProdScreen} />}
         </div>
     )
 }

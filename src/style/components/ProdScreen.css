@@ -1,0 +1,26 @@
+.prod-screen-container {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    right: 35px;
+    bottom: 35px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.close-prod-screen {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    right: 0;
+    left: auto;
+    font-size: 50pt;
+    cursor: pointer;
+    margin: 10px;
+}
