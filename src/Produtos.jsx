@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 
-import ClientesJson from './data/clientes.json'
+import ProdutosJson from './data/produtos.json'
 
 import {GiClothes} from 'react-icons/gi'
 import {AiOutlinePlusCircle} from 'react-icons/ai'
@@ -24,16 +24,12 @@ const Produtos = () => {
         let pagos = 0
         const updateProdList = []
   
-        ClientesJson.forEach((clien) => {
-            clien.produtos.forEach((prod) => {
-                totalProdutos++
-                if (prod.status === 0) disponiveis++
-                else if (prod.status === 1) vendidos++
-                else if (prod.status === 2) pagos++
+        ProdutosJson.forEach((prod) => {
+            totalProdutos++
+            (prod.status === 0 ? disponiveis++ : (prod.status === 1 ? vendidos++ : pagos++))
 
-                const itemLista = {cliente: clien.id, id: `#${clien.id}-${prod.id}`, tipo: prod.tipo, titulo: `${prod.tipo} ${prod.descricao}`, valor: `R$ ${prod.valor}`, status: prod.status}
-                updateProdList.push(itemLista)
-            })
+            const itemLista = {cliente: prod.cliente, id: `#${prod.cliente}-${prod.id}`, tipo: prod.tipo, titulo: `${prod.tipo} ${prod.descricao}`, valor: `R$ ${prod.valor}`, status: prod.status}
+            updateProdList.push(itemLista)
         })
   
         setNp(totalProdutos)
@@ -45,10 +41,12 @@ const Produtos = () => {
 
     const openProdScreen = (prod) => {
         setSelectedProduct(prod)
+        document.documentElement.style.pointerEvents = 'none'
     };
     
     const closeProdScreen = () => {
         setSelectedProduct(null)
+        document.documentElement.style.pointerEvents = 'all'
     }
 
     return (
