@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import {writeFile} from 'fs/promises'
 
 import ProdutosJson from './data/produtos.json'
 
@@ -15,7 +16,7 @@ const Produtos = () => {
     const [pv, setPv] = useState(0)
     const [pp, setPp] = useState(0)
     const [ProdList, setProdList] = useState([])
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null)
   
     useEffect(() => {
         let totalProdutos = 0
@@ -42,11 +43,27 @@ const Produtos = () => {
     const openProdScreen = (prod) => {
         setSelectedProduct(prod)
         document.documentElement.style.pointerEvents = 'none'
-    };
+    }
     
     const closeProdScreen = () => {
         setSelectedProduct(null)
         document.documentElement.style.pointerEvents = 'all'
+    }
+    
+    const excluirProduto = () => {
+        ProdList.splice(ProdList.findIndex((pro) => selectedProduct.cliente ===  pro.cliente && selectedProduct.id === pro.id), 1)
+        closeProdScreen()
+        saveJSONToFile(ProdList, './data/testeSave.json')
+    }
+
+    const saveJSONToFile = async (data, filePath) => {
+        try {
+            const jsonData = JSON.stringify(data, null, 2);
+            await writeFile(filePath, jsonData);
+            console.log('Arquivo JSON salvo com sucesso!');
+        } catch (error) {
+            console.error('Erro ao salvar o arquivo JSON:', error);
+        }
     }
 
     return (
@@ -70,7 +87,7 @@ const Produtos = () => {
                     </div>
                 ))}
             </div>
-            {selectedProduct && <ProdScreen product={selectedProduct} onClose={closeProdScreen} />}
+            {selectedProduct && <ProdScreen product={selectedProduct} onClose={closeProdScreen} excluirProd={excluirProduto}/>}
         </div>
     )
 }

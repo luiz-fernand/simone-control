@@ -7,8 +7,9 @@ import {RiDeleteBinLine} from 'react-icons/ri'
 
 import '../style/components/ProdScreen.css'
 
-const ProdScreen = ({product, onClose}) => {
+const ProdScreen = ({product, onClose, excluirProd}) => {
     const cliente = ClientesJson.find((cli) =>  cli.id === product.cliente)
+
     return (
         <div className="product-screen-overlay">
             <div className="prod-screen-container">
@@ -22,7 +23,7 @@ const ProdScreen = ({product, onClose}) => {
                 </div>
                 <div className="prod-screen-acao">
                     <button className='btn-prdscr-1'><AiOutlineEdit style={{marginRight: '5px', fontSize: '18pt'}}/>Editar</button>
-                    <button className='btn-prdscr-2'><RiDeleteBinLine style={{marginRight: '5px', fontSize: '18pt'}}/>Excluir</button>
+                    <button className='btn-prdscr-2' onClick={excluirProd}><RiDeleteBinLine style={{marginRight: '5px', fontSize: '18pt'}}/>Excluir</button>
                 </div>
             </div>
         </div>
