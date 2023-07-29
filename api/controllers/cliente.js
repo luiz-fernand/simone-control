@@ -9,6 +9,15 @@ export const getClientes = (_, res) => {
     })
 }
 
+export const getClienteById = (req, res) => {
+    const q = 'SELECT * FROM cliente WHERE `id` = ?'
+
+    db.query(q, [req.params.id],(err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
 export const addCliente = (req, res) => {
     const q = 'INSERT INTO cliente(`nome`, `referencia`, `telefone`) VALUES(?)'
 

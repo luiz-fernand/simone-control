@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use("/", clieRoutes)
+app.use("/clientes", clieRoutes)
 app.use("/produtos", prodRoutes)
 
 app.listen(8800)
