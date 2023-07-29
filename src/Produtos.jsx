@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {writeFile} from 'fs/promises'
 
 import ProdutosJson from './data/produtos.json'
 
@@ -53,17 +52,6 @@ const Produtos = () => {
     const excluirProduto = () => {
         ProdList.splice(ProdList.findIndex((pro) => selectedProduct.cliente ===  pro.cliente && selectedProduct.id === pro.id), 1)
         closeProdScreen()
-        saveJSONToFile(ProdList, './data/testeSave.json')
-    }
-
-    const saveJSONToFile = async (data, filePath) => {
-        try {
-            const jsonData = JSON.stringify(data, null, 2);
-            await writeFile(filePath, jsonData);
-            console.log('Arquivo JSON salvo com sucesso!');
-        } catch (error) {
-            console.error('Erro ao salvar o arquivo JSON:', error);
-        }
     }
 
     return (
