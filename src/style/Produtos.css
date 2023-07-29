@@ -3,22 +3,23 @@
   flex-direction: row;
   justify-content: center;
   min-height: 100vmin;
-  background-color: #ffffff;
   color: #262626;
 }
 
 .informacoes-produtos {
   flex: 1.5;
   display: flex;
-  margin-top: 85px;
+  padding-top: 85px;
+  background-color: white;
+  box-shadow: 0 0 5px #ccc;
   flex-direction: column;
   align-items: center;
 }
 
 .titulo-produtos {
   border-bottom: 1px solid #444444;
-  width: 100%;
-  padding-bottom: 10px;
+  width: 95%;
+  padding-bottom: 15px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -44,7 +45,9 @@
   margin: 5px 15px;
   border-radius: 25px;
   text-align: center;
+  background-color: white;
   border: 1px solid #aaaaaa;
+  box-shadow: 0 0 5px #ccc;
   font-size: 12pt;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -53,6 +56,7 @@
 .cod-produto:hover {
   border-color: #ab2b33;
   color: #ab2b33;
+  box-shadow: 0 0 2px #ab2b33;
   width: 99%;
 }
 
@@ -70,7 +74,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 95%;
   border-bottom: 1px solid black;
   padding-bottom: 20px;
 }

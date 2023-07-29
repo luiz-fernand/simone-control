@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom'
 import {toast, ToastContainer} from 'react-toastify'
 import axios from 'axios'
 
-// import ProdutosJson from './data/produtos.json'
-
 import {GiClothes} from 'react-icons/gi'
 import {AiOutlinePlusCircle} from 'react-icons/ai'
 import ProdScreen from './component/ProdScreen'
@@ -69,7 +67,7 @@ const Produtos = () => {
                 <div className="produtos-acao-container">
                     <Link><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR PRODUTO</Link>
                 </div>
-                <p style={{paddingTop: '1px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
+                <p style={{paddingTop: '15px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
                 <p>PRODUTOS DISPONIVEIS: <b>{pd}</b></p>
                 <p>PRODUTOS VENDIDOS: <b>{pv}</b></p>
                 <p>PRODUTOS PAGOS: <b>{pp}</b></p>
