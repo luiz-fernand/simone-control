@@ -59,3 +59,7 @@
   box-shadow: 0 0 2px #ab2b33;
   width: 99%;
 }
+
+.cliente-pendente {
+  background-color: #ffdada;
+}
