@@ -16,6 +16,7 @@ const Produtos = () => {
     const [ProdList, setProdList] = useState([])
     const [selectedProduct, setSelectedProduct] = useState(null)
   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getProdutos()
 
@@ -33,7 +34,7 @@ const Produtos = () => {
         setPd(disponiveis)
         setPv(vendidos)
         setPp(pagos)
-    }, [ProdList])
+    })
 
     const getProdutos = async () => {
         try {
