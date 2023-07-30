@@ -9,7 +9,7 @@
 .informacoes-clientes {
   flex: 1.5;
   display: flex;
-  padding: 85px;
+  padding-top: 85px;
   background-color: white;
   box-shadow: 0 0 5px #ccc;
   flex-direction: column;
