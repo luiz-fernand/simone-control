@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {toast, ToastContainer} from 'react-toastify'
 import axios from 'axios'
 
 import {GiClothes} from 'react-icons/gi'
@@ -41,7 +40,7 @@ const Produtos = () => {
             const res = await axios.get('http://localhost:8800/produtos')
             setProdList(res.data)
         } catch(error){
-            toast.error(error)
+            window.alert(error)
         }
     }
 
@@ -55,8 +54,14 @@ const Produtos = () => {
         document.documentElement.style.pointerEvents = 'all'
     }
     
-    const excluirProduto = () => {
-        ProdList.splice(ProdList.findIndex((pro) => selectedProduct.cliente ===  pro.cliente && selectedProduct.id === pro.id), 1)
+    const delProduto = async (id) => {
+        await axios.delete(`http://localhost:8800/produtos/${id}`)
+            .then(({data}) => {
+                const newArray = ProdList.filter((prod) => prod.id !== id)
+                setProdList(newArray)
+                window.alert(data)
+            })
+            .catch(({data}) => window.alert(data))
         closeProdScreen()
     }
 
@@ -81,8 +86,7 @@ const Produtos = () => {
                     </div>
                 ))}
             </div>
-            <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_CENTER}/>
-            {selectedProduct && <ProdScreen product={selectedProduct} onClose={closeProdScreen} excluirProd={excluirProduto}/>}
+            {selectedProduct && <ProdScreen product={selectedProduct} onClose={closeProdScreen} excluirProd={delProduto}/>}
         </div>
     )
 }

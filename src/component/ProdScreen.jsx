@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {toast, ToastContainer} from 'react-toastify'
 import axios from 'axios'
 
 import {AiOutlineCloseCircle, AiOutlineEdit} from 'react-icons/ai'
@@ -15,11 +14,16 @@ const ProdScreen = ({product, onClose, excluirProd}) => {
             const res = await axios.get(`http://localhost:8800/clientes/${product.cliente}`)
             setCliente(res.data)
         } catch(error){
-            toast.error(error)
+            window.alert(error)
         }
     }
 
     getClienteById()
+
+    const confirmacaoDelete = () => {
+        var conf = window.confirm("Tem certeza que deseja EXCLUIR?")
+        if(conf === true) excluirProd(product.id)
+    }
 
     return (
         <div className="product-screen-overlay">
@@ -34,10 +38,9 @@ const ProdScreen = ({product, onClose, excluirProd}) => {
                 </div>
                 <div className="prod-screen-acao">
                     <button className='btn-prdscr-1'><AiOutlineEdit style={{marginRight: '5px', fontSize: '18pt'}}/>Editar</button>
-                    <button className='btn-prdscr-2' onClick={excluirProd}><RiDeleteBinLine style={{marginRight: '5px', fontSize: '18pt'}}/>Excluir</button>
+                    <button className='btn-prdscr-2' onClick={confirmacaoDelete}><RiDeleteBinLine style={{marginRight: '5px', fontSize: '18pt'}}/>Excluir</button>
                 </div>
             </div>
-            <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_CENTER}/>
         </div>
     )
 }
