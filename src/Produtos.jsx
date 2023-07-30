@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import {GiClothes} from 'react-icons/gi'
 import {AiOutlinePlusCircle} from 'react-icons/ai'
+
 import ProdScreen from './component/ProdScreen'
 
 import './style/Produtos.css'
@@ -71,7 +72,7 @@ const Produtos = () => {
             <div className="informacoes-produtos">
                 <h1 className='titulo-produtos'><GiClothes style={{marginRight: '10px'}}/> Produtos</h1>
                 <div className="produtos-acao-container">
-                    <Link><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR PRODUTO</Link>
+                    <Link to={'/produtos/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR PRODUTO</Link>
                 </div>
                 <p style={{paddingTop: '15px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
                 <p>PRODUTOS DISPONIVEIS: <b>{pd}</b></p>

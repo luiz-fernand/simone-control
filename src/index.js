@@ -6,8 +6,9 @@ import './style/index.css'
 
 import NavBar from './component/NavBar';
 import Inicio from './Inicio';
-import Clientes from './Clientes';
 import Produtos from './Produtos';
+import AdicionarProduto from './component/addProd';
+import Clientes from './Clientes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
     <Routes>
       <Route path='/' element={<Inicio/>}/>
       <Route path='/produtos' element={<Produtos/>}/>
+        <Route path='/produtos/add' element={<AdicionarProduto/>}/>
       <Route path='/clientes' element={<Clientes/>}/>
     </Routes>
   </BrowserRouter>
