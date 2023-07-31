@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import {AiOutlineCloseCircle, AiOutlineEdit} from 'react-icons/ai'
 import {RiDeleteBinLine} from 'react-icons/ri'
@@ -33,11 +34,12 @@ const ProdScreen = ({product, onClose, excluirProd}) => {
                     <p>{`#${product.cliente}-${product.id}`}</p>
                     {Cliente.length > 0 && <p>Item de: {Cliente[0].nome}</p>}
                     <h1>{`${product.tipo} ${product.descricao}`}</h1>
+                    <p>{product.tamanho !== '' ? `Tamanho: ${product.tamanho}` : null}</p>
                     <h2>Status - {product.status === 0 ? 'DISPONIVEL' : (product.status === 1 ? 'VENDIDO' : 'PAGO!')}</h2>
                     <p>{`R$ ${product.valor}`}</p>
                 </div>
                 <div className="prod-screen-acao">
-                    <button className='btn-prdscr-1'><AiOutlineEdit style={{marginRight: '5px', fontSize: '18pt'}}/>Editar</button>
+                    <Link to={`/produtos/edit/${product.id}`} className='btn-prdscr-1'><AiOutlineEdit style={{marginRight: '5px', fontSize: '18pt'}}/>Editar</Link>
                     <button className='btn-prdscr-2' onClick={confirmacaoDelete}><RiDeleteBinLine style={{marginRight: '5px', fontSize: '18pt'}}/>Excluir</button>
                 </div>
             </div>

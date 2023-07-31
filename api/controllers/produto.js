@@ -45,14 +45,14 @@ export const addProduto = (req, res) => {
 }
 
 export const editProduto = (req, res) => {
-    const q = 'UPDATE produto SET `cliente` = ?, `tipo` = ?, `descricao` = ?, `tamanho` = ?, `valor` = ? WHERE `id` = ?'
+    const q = 'UPDATE produto SET `tipo` = ?, `descricao` = ?, `tamanho` = ?, `valor` = ?, `status` = ? WHERE `id` = ?'
 
     const values = [
-        req.body.cliente,
         req.body.tipo,
         req.body.descricao,
         req.body.tamanho,
-        req.body.valor
+        req.body.valor,
+        req.body.status
     ]
 
     db.query(q, [...values, req.params.id],(err) => {
