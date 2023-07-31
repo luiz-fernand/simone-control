@@ -10,7 +10,7 @@
     background-color: white;
     box-shadow: 0 0 10px #ccc;
     border-radius: 8px;
-    padding: 20px;
+    padding: 0 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -24,10 +24,10 @@
     justify-content: center;
     align-items: center;
     width: 95%;
-    margin-bottom: 15px; /* Espaço entre os campos */
+    margin-bottom: 15px;
 }
 
-.label {
+.input-area-add label {
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -36,8 +36,9 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%; /* Ocupar toda a largura disponível */
+    width: 100%;
     font-size: 16px;
+    text-align: center;
 }
 
 .input-area-add > select {
@@ -67,6 +68,7 @@
     justify-content: center;
     font-weight: bold;
     border: 1px solid white;
+    margin-bottom: 10px;
 }
 
 .form-adicionar-container > button:hover {

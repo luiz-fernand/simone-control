@@ -49,6 +49,7 @@ const AdicionarProduto = () => {
                 <div className="input-area-add">
                     <label>Cliente</label>
                     <select name="cliente">
+                        <option value="">Selecione um cliente...</option>
                         {ListaCli.map((cli) => (
                             <option value={cli.id} key={cli.id}>{`${cli.nome} - #${cli.id}`}</option>
                         ))}
