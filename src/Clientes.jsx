@@ -27,7 +27,7 @@ const Clientes = () => {
             const res = await axios.get('http://localhost:8800/clientes')
             setClienList(res.data)
         } catch(error){
-            window.alert(error)
+            console.log(error)
         }
     }
 
@@ -36,7 +36,7 @@ const Clientes = () => {
             const res = await axios.get('http://localhost:8800/produtos')
             setProdList(res.data)
         } catch(error){
-            window.alert(error)
+            console.log(error)
         }
     }
 

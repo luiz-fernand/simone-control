@@ -17,7 +17,7 @@ const AdicionarProduto = () => {
             const res = await axios.get('http://localhost:8800/clientes')
             setListaCli(res.data)
         } catch(error){
-            window.alert(error)
+            console.log(error)
         }
     }
 
@@ -38,7 +38,7 @@ const AdicionarProduto = () => {
                 window.alert(data)
                 window.location.replace('http://localhost:3000/produtos')
             })
-            .catch(({data}) => window.alert(data))
+            .catch(({data}) => console.log(data))
         }
     }
 

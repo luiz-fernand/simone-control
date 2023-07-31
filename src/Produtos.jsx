@@ -42,7 +42,7 @@ const Produtos = () => {
             const res = await axios.get('http://localhost:8800/produtos')
             setProdList(res.data)
         } catch(error){
-            window.alert(error)
+            console.log(error)
         }
     }
 
@@ -63,7 +63,7 @@ const Produtos = () => {
                 setProdList(newArray)
                 window.alert(data)
             })
-            .catch(({data}) => window.alert(data))
+            .catch(({data}) => console.log(data))
         closeProdScreen()
     }
 

@@ -15,7 +15,7 @@ const ProdScreen = ({product, onClose, excluirProd}) => {
             const res = await axios.get(`http://localhost:8800/clientes/${product.cliente}`)
             setCliente(res.data)
         } catch(error){
-            window.alert(error)
+            console.log(error)
         }
     }
 
