@@ -118,3 +118,8 @@
 .prod-cli-pend {
     color: #ffbfbf;
 }
+
+.prod-cli-fina {
+    color: #ccc;
+    text-decoration: line-through;
+}
