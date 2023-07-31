@@ -21,8 +21,8 @@
     color: white;
     pointer-events: all;
     transition: all 0.5s ease-in-out;
-    width: 620px;
-    height: 435px;
+    min-width: 620px;
+    height: 455px;
 }
 
 .prod-screen-info {
@@ -51,8 +51,9 @@
     flex-direction: row;
 }
 
-.prod-screen-acao button {
+.btn-prdscr-1, .btn-prdscr-2 {
     padding: 15px 20px;
+    text-decoration: none;
     margin: 0 10px;
     border-radius: 35px;
     font-size: 15pt;
@@ -66,7 +67,7 @@
     background-color: rgb(224, 224, 224);
 }
 
-.prod-screen-acao button:hover {
+.btn-prdscr-1:hover, .btn-prdscr-2:hover {
     padding: 20px 30px;
     margin: 0;
     color: black;
