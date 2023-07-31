@@ -45,7 +45,7 @@ const ClienScreen = ({cliente, onClose, excluirClien}) => {
                 <div className="lista-produtos-cliente">
                     {Produtos.map((prod) => (
                         <div className="produto-item-lista-clien" key={prod.id}>
-                            <p className={prod.status === 1 ? 'prod-cli-pend' : prod.status === 2 ? 'prod-cli-fina' : ''}>{`#${prod.id} - ${prod.tipo} ${prod.descricao}`}</p>
+                            <p className={prod.status === 1 ? 'prod-cli-pend' : prod.status === 2 ? 'prod-cli-fina' : ''}>{`#${prod.id} - ${prod.tipo} ${prod.descricao}${prod.status === 1 ? ` - R$ ${prod.valor/2}` : ''}`}</p>
                         </div>
                     ))}
                 </div>
