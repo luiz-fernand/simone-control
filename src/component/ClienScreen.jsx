@@ -36,7 +36,7 @@ const ClienScreen = ({cliente, onClose, excluirClien}) => {
                         <h1>{cliente.nome}</h1>
                     </div>
                     {cliente.referencia === '' || cliente.referencia === null ? null : <p style={{fontSize: '15pt', marginBottom: '10px'}}>{`Referência: ${cliente.referencia}`}</p>}
-                    {cliente.telefone === null || cliente.telefone === '' ? null : <p style={{fontSize: '11pt', marginBottom: '10px'}}>{`Telefone: ${cliente.telefone}`}</p>}
+                    {cliente.telefone === null || cliente.telefone === '' || cliente.telefone === '-' ? null : <p style={{fontSize: '11pt', marginBottom: '10px'}}>{`Telefone: ${cliente.telefone}`}</p>}
                 </div>
                 <div className="clien-screen-acao">
                     <Link to={`/clientes/edit/${cliente.id}`} className='btn-cliscr-1'><AiOutlineEdit style={{marginRight: '5px', fontSize: '18pt'}}/>Editar</Link>
@@ -44,7 +44,7 @@ const ClienScreen = ({cliente, onClose, excluirClien}) => {
                 </div>
                 <div className="lista-produtos-cliente">
                     {Produtos.map((prod) => (
-                        <div className="produto-item-lista-clien">
+                        <div className="produto-item-lista-clien" key={prod.id}>
                             <p className={prod.status === 1 ? 'prod-cli-pend' : prod.status === 2 ? 'prod-cli-fina' : ''}>{`#${prod.id} - ${prod.tipo} ${prod.descricao}`}</p>
                         </div>
                     ))}
