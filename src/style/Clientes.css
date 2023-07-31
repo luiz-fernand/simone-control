@@ -63,3 +63,33 @@
 .cliente-pendente {
   background-color: #ffdada;
 }
+
+.clientes-acao-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+
+.clientes-acao-container a {
+  display: flex;
+  align-items: center;
+  font-size: 15pt;
+  text-decoration: none;
+  background-color: #aaaaaa;
+  padding: 15px 20px;
+  border-radius: 30px;
+  color: black;
+  border: 1px solid rgb(92, 92, 92);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.clientes-acao-container a:hover {
+  background-color: white;
+  padding: 15px 30px;
+  border-color: black;
+  box-shadow: 0 0 5px black;
+}

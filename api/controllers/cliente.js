@@ -19,9 +19,10 @@ export const getClienteById = (req, res) => {
 }
 
 export const addCliente = (req, res) => {
-    const q = 'INSERT INTO cliente(`nome`, `referencia`, `telefone`) VALUES(?)'
+    const q = 'INSERT INTO cliente(`id`, `nome`, `referencia`, `telefone`) VALUES(?)'
 
     const values = [
+        req.body.id,
         req.body.nome,
         req.body.referencia,
         req.body.telefone

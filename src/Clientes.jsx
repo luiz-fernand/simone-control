@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import {BsPeopleFill} from 'react-icons/bs'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 import './style/Clientes.css'
 
 const Clientes = () => {
@@ -55,6 +57,9 @@ const Clientes = () => {
         <div className="clientes-container">
             <div className="informacoes-clientes">
                 <h1 className='titulo-clientes'><BsPeopleFill style={{marginRight: '10px'}}/> Clientes</h1>
+                <div className="clientes-acao-container">
+                    <Link to={'/clientes/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR CLIENTE</Link>
+                </div>
                 <p>Nº DE CLIENTES: <b>{ClienList.length}</b></p>
                 <p>CLIENTES PENDENTES: <b>{ClienPen}</b></p>
             </div>
