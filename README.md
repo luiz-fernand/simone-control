@@ -6,9 +6,30 @@
 
 Um sistema de controle de estoque para o brechó da Simone.
 
-Feito com as tecnologias HTML, CSS, React puro, Node e SQL
+Feito com as tecnologias:
+ - HTML
+ - CSS
+ - React.js
+ - Node.js
+ - SQL
 
-Ele contém até o momento 3 páginas de funções básicas (Início, Produtos e Clientes). 
+
+Ele contém até o momento 3 páginas de funções básicas:
+ - Início
+ - Produtos
+ - Clientes
+
+Feito a base de CRUD, com funções de Adicionar, Consultar, Editar e Excluir cada informação.
+
+## Final Project
+
+No projeto final deverá ser apresentado, além das páginas já ditas, mais 3 que não estão presentes no programa de testes, que são:
+ - Vendas
+ - Comissões
+ - Relatórios (opcional)
+
+A fim de criar uma super automação nos processos de gerência de estoque, controle de vendas e comissões.
+
 
 Legenda:
 
