@@ -6,7 +6,7 @@ import '../style/components/NavBar.css'
 const NavBar = () => {
     return (
         <header>
-            <img src={process.env.PUBLIC_URL + '/Logo.png'} alt="SCS" width={50}/>
+            <img src={process.env.PUBLIC_URL + '/Logo.png'} alt="SCS" height={75}/>
             <nav className='nav-container'>
                 <NavLink className='nav-item' to='/'>Inicio</NavLink>
                 <NavLink className='nav-item' to='/produtos'>Produtos</NavLink>
