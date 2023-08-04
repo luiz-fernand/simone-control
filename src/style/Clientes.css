@@ -29,7 +29,7 @@
 .lista-clientes {
   flex: 2;
   display: flex;
-  margin-top: 80px;
+  margin-top: 75px;
   max-height: 87vmin;
   overflow-y: auto;
   overflow-x: hidden;
