@@ -13,6 +13,7 @@ const Clientes = () => {
     const [ProdList, setProdList] = useState([])
     const [ClienPen, setClienPen] = useState(0)
     const [selectedCliente, setSelectedCliente] = useState(null)
+    const [searchClien, setSearchClien] = useState('')
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -84,16 +85,25 @@ const Clientes = () => {
                 <div className="clientes-acao-container">
                     <Link to={'/clientes/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR CLIENTE</Link>
                 </div>
-                <p>Nº DE CLIENTES: <b>{ClienList.length}</b></p>
+                <div className="search-clie-container">
+                    <input type="text" name='titulo' onChange={(e) => setSearchClien(e.target.value)} placeholder='Pesquisar nome...'/>
+                    <div className="item-checkbox-prod">
+                        <input id='pendentes-clien' type="checkbox" name='pendentes'/>
+                        <label htmlFor='pendentes-clien'>Somente pendentes</label>
+                    </div>
+                </div>
+                <p style={{marginTop: '15px'}}>Nº DE CLIENTES: <b>{ClienList.length}</b></p>
                 <p>CLIENTES PENDENTES: <b>{ClienPen}</b></p>
             </div>
             <div className="lista-clientes">
                 {ClienList.map((clien) => (
-                    <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
-                        <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
-                        <p style={{flex: '2'}}><b>{clien.nome}</b></p>
-                        <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
-                    </div>
+                    clien.nome.toLowerCase().includes(searchClien.toLowerCase()) ? (
+                        <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
+                            <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
+                            <p style={{flex: '2'}}><b>{clien.nome}</b></p>
+                            <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
+                        </div>
+                    ) : null
                 ))}
             </div>
             {selectedCliente && <ClienScreen cliente={selectedCliente} onClose={closeClienScreen} excluirClien={delCliente}/>}
