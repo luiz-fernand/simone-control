@@ -17,10 +17,13 @@ const Produtos = () => {
     const [ProdList, setProdList] = useState([])
     const [selectedProduct, setSelectedProduct] = useState(null)
     const [searchProd, setSearchProd] = useState('')
+    const [statusProd, setStatusProd] = useState(-1)
   
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getProdutos()
+
+        editStatusSelect()
 
         let totalProdutos = 0
         let disponiveis = 0
@@ -68,6 +71,14 @@ const Produtos = () => {
         closeProdScreen()
     }
 
+    const editStatusSelect = () => {
+        const radioCk = document.getElementsByName('statusCk')
+        if(radioCk[0].checked) setStatusProd(-1)
+        if(radioCk[1].checked) setStatusProd(0)
+        if(radioCk[2].checked) setStatusProd(1)
+        if(radioCk[3].checked) setStatusProd(2)
+    }
+
     return (
         <div className="produtos-container">
             <div className="informacoes-produtos">
@@ -76,7 +87,23 @@ const Produtos = () => {
                     <Link to={'/produtos/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR PRODUTO</Link>
                 </div>
                 <div className="search-prod-container">
-                    <input id='search-prod' type="text" name='titulo' onChange={(e) => setSearchProd(e.target.value)}/>
+                    <input id='search-prod' type="text" name='titulo' onChange={(e) => setSearchProd(e.target.value)} placeholder='Pesquisar nome...'/>
+                    <div className="item-checkbox-prod" style={{marginTop: '15px'}}>
+                        <input id='checkbox-prod-0' type="radio" name='statusCk' value={-1} defaultChecked/>
+                        <label htmlFor='checkbox-prod-0'>Todos</label>
+                    </div>
+                    <div className="item-checkbox-prod">
+                        <input id='checkbox-prod-1' type="radio" name='statusCk' value={0}/>
+                        <label htmlFor='checkbox-prod-1'>Somente disponiveis</label>
+                    </div>
+                    <div className="item-checkbox-prod">
+                        <input id='checkbox-prod-2' type="radio" name='statusCk' value={1}/>
+                        <label htmlFor='checkbox-prod-2'>Somente vendidos</label>
+                    </div>
+                    <div className="item-checkbox-prod">
+                        <input id='checkbox-prod-3' type="radio" name='statusCk' value={2}/>
+                        <label htmlFor='checkbox-prod-3'>Somente pagos</label>
+                    </div>
                 </div>
                 <p style={{paddingTop: '15px'}}>Nº DE PRODUTOS: <b>{np}</b></p>
                 <p>PRODUTOS DISPONIVEIS: <b>{pd}</b></p>
@@ -85,13 +112,20 @@ const Produtos = () => {
             </div>
             <div className="lista-produtos">
                 {ProdList.map(prod => (
-                    
-                    prod.tipo.toLowerCase().includes(searchProd.toLowerCase()) || prod.descricao.toLowerCase().includes(searchProd.toLowerCase()) ? (
-                    <div className={'cod-produto' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
-                        <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
-                        <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
-                        <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
-                    </div>
+                    (prod.tipo.toLowerCase() + ' ' + prod.descricao.toLowerCase()).includes(searchProd.toLowerCase()) ? (
+                        statusProd === prod.status ? (
+                            <div className={'cod-produto' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
+                                <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
+                                <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
+                                <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
+                            </div>
+                        ) : statusProd === -1 ? (
+                            <div className={'cod-produto' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
+                                <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
+                                <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
+                                <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
+                            </div>
+                        ) : null
                     ) : null
                 ))}
             </div>
