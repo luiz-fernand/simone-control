@@ -34,25 +34,26 @@ const AdicionarCliente = () => {
         const user = ref.current
 
         await axios.post('http://localhost:8800/clientes',{
-            id: user.id.value,
+            id: user.id.value === '' ? UltimoId + 1 : user.id.value,
             nome: user.nome.value,
             referencia: user.referencia.value,
             telefone: user.telefone.value
         })
         .then(({data}) => {
             window.alert(data)
-            window.location.replace('http://localhost:3000/clientes')
+            document.getElementById('form-add-cli').reset()
+            document.getElementById('form-add-cli').nome.focus()
         })
         .catch(({data}) => console.log(data))
     }
 
     return (
         <div className="adicionar-cliente-container">
-            <form className='form-add-cliente-container' ref={ref} onSubmit={adicionarClien}>
+            <form id='form-add-cli' className='form-add-cliente-container' ref={ref} onSubmit={adicionarClien}>
                 <h1>Adicionar Cliente</h1>
                 <div className="input-area-add-cli">
                     <label>ID</label>
-                    <input type="number" name='id' placeholder={`Ultimo ID: ${UltimoId}`} required/>
+                    <input type="number" name='id' placeholder={`Ultimo ID: ${UltimoId}`}/>
                 </div>
                 <div className="input-area-add-cli">
                     <label>Nome</label>
