@@ -9,8 +9,9 @@ const EditarProduto = () => {
     const { id } = useParams()
     const [Produto, setProduto] = useState([])
     const [Cliente, setCliente] = useState({})
+    const [attProd, setAttProd] = useState(0)
     const ref = useRef()
-
+    
     document.documentElement.style.pointerEvents = 'all'
 
     useEffect(() => {
@@ -37,7 +38,10 @@ const EditarProduto = () => {
         }
     }
 
-    getProdutoById()
+    if(attProd === 0){
+        getProdutoById()
+        setAttProd(1)
+    }
 
     const editarProd = async (e) => {
         e.preventDefault()
@@ -48,7 +52,7 @@ const EditarProduto = () => {
                 descricao: user.descricao.value === '' ? Produto[0].descricao : user.descricao.value,
                 tamanho: user.tamanho.value === '' ? Produto[0].tamanho : user.tamanho.value,
                 valor: user.valor.value === '' ? Produto[0].valor : user.valor.value,
-                status: user.status.value === '' ? Produto[0].status : user.status.value
+                status: user.status.value
             })
             .then(({data}) => {
                 window.alert(data)
@@ -56,8 +60,6 @@ const EditarProduto = () => {
             })
             .catch(({data}) => window.alert(data))
     }
-
-
 
     return (
         <div className="editar-produto-container">
@@ -79,7 +81,15 @@ const EditarProduto = () => {
                         </div>
                     <div className="input-area-edit">
                         <label>Status</label>
-                        <input type="number" max={2} min={0} name='status' placeholder={Produto[0]?.status || 0}/>
+                        <select name="status" id='select-edit-prod' value={Produto[0]?.status} onChange={(e) => {
+                            const newArray = [...Produto]
+                            newArray[0].status = parseInt(e.target.value)
+                            setProduto(newArray)
+                        }}>
+                            <option value="0">Disponivel</option>
+                            <option value="1">Vendido</option>
+                            <option value="2">Pago!</option>
+                        </select>
                     </div>
                     </div>
                     <div className="ladoD-edit-prod">
