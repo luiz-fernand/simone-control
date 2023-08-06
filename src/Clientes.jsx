@@ -98,11 +98,21 @@ const Clientes = () => {
             <div className="lista-clientes">
                 {ClienList.map((clien) => (
                     clien.nome.toLowerCase().includes(searchClien.toLowerCase()) ? (
-                        <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
-                            <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
-                            <p style={{flex: '2'}}><b>{clien.nome}</b></p>
-                            <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
-                        </div>
+                        document.getElementById('pendentes-clien').checked ? (
+                            ProdCli(clien.id)[1] > 0 ? (
+                                <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
+                                    <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
+                                    <p style={{flex: '2'}}><b>{clien.nome}</b></p>
+                                    <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
+                                </div>
+                            ) : null
+                        ) : (
+                            <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
+                                <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
+                                <p style={{flex: '2'}}><b>{clien.nome}</b></p>
+                                <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
+                            </div>
+                        )
                     ) : null
                 ))}
             </div>
