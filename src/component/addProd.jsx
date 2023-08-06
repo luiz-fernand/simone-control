@@ -34,14 +34,17 @@ const AdicionarProduto = () => {
         })
         .then(({data}) => {
             window.alert(data)
-            window.location.replace('http://localhost:3000/produtos')
+            const clienID = document.getElementById('form-add-prod').cliente.value
+            document.getElementById('form-add-prod').reset()
+            document.getElementById('form-add-prod').cliente.value = clienID
+            document.getElementById('form-add-prod').tipo.focus()
         })
         .catch(({data}) => console.log(data))
     }
 
     return (
         <div className="adicionar-produto-container">
-            <form className='form-adicionar-container' ref={ref} onSubmit={adicionarProd}>
+            <form id='form-add-prod' className='form-adicionar-container' ref={ref} onSubmit={adicionarProd}>
                 <h1>Adicionar Produto</h1>
                 <div className="input-area-add">
                     <label>Cliente</label>
