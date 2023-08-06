@@ -25,21 +25,18 @@ const AdicionarProduto = () => {
         e.preventDefault()
         const user = ref.current
 
-        if(!user.cliente.value || !user.tipo.value || !user.descricao.value || !user.tamanho.value || !user.valor.value) return window.alert('Preencha TODOS os campos!!')
-        else {
-            await axios.post('http://localhost:8800/produtos',{
-                cliente: user.cliente.value,
-                tipo: user.tipo.value,
-                descricao: user.descricao.value,
-                tamanho: user.tamanho.value,
-                valor: user.valor.value
-            })
-            .then(({data}) => {
-                window.alert(data)
-                window.location.replace('http://localhost:3000/produtos')
-            })
-            .catch(({data}) => console.log(data))
-        }
+        await axios.post('http://localhost:8800/produtos',{
+            cliente: user.cliente.value,
+            tipo: user.tipo.value,
+            descricao: user.descricao.value,
+            tamanho: user.tamanho.value,
+            valor: user.valor.value
+        })
+        .then(({data}) => {
+            window.alert(data)
+            window.location.replace('http://localhost:3000/produtos')
+        })
+        .catch(({data}) => console.log(data))
     }
 
     return (
@@ -48,7 +45,7 @@ const AdicionarProduto = () => {
                 <h1>Adicionar Produto</h1>
                 <div className="input-area-add">
                     <label>Cliente</label>
-                    <select name="cliente">
+                    <select name="cliente" required>
                         <option value="">Selecione um cliente...</option>
                         {ListaCli.map((cli) => (
                             <option value={cli.id} key={cli.id}>{`${cli.nome} - #${cli.id}`}</option>
@@ -57,11 +54,11 @@ const AdicionarProduto = () => {
                 </div>
                 <div className="input-area-add">
                     <label>Tipo</label>
-                    <input type="text" name='tipo'/>
+                    <input type="text" name='tipo' required/>
                 </div>
                 <div className="input-area-add">
                     <label>Descrição</label>
-                    <textarea name='descricao'/>
+                    <textarea name='descricao' required/>
                 </div>
                 <div className="input-area-add">
                     <label>Tamanho</label>
@@ -69,7 +66,7 @@ const AdicionarProduto = () => {
                 </div>
                 <div className="input-area-add">
                     <label>Valor</label>
-                    <input type="number" step='0.01' name='valor'/>
+                    <input type="number" step='0.01' name='valor' required/>
                 </div>
                 <button type='submit'><AiOutlinePlus style={{fontSize: '15pt', marginRight: '5px'}}/>ADICIONAR</button>
             </form>
