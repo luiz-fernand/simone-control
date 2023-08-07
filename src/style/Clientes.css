@@ -1,46 +1,79 @@
 .clientes-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  align-items: normal;
   min-height: 100vmin;
   color: #262626;
 }
 
 .informacoes-clientes {
   flex: 1.5;
-  display: flex;
   padding-top: 85px;
   background-color: white;
   box-shadow: 0 0 5px #ccc;
-  flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .titulo-clientes {
   border-bottom: 1px solid #444444;
   width: 95%;
   padding-bottom: 15px;
+}
+
+.clientes-acao-container {
+  width: 95%;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+
+.clientes-acao-container a {
+  font-size: 15pt;
+  text-decoration: none;
+  background-color: #aaaaaa;
+  padding: 15px 20px;
+  border-radius: 30px;
+  color: black;
+  border: 1px solid rgb(92, 92, 92);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.clientes-acao-container a:hover {
+  background-color: white;
+  padding: 15px 30px;
+  border-color: black;
+  box-shadow: 0 0 5px black;
+}
+
+.search-clie-container {
+  width: 95%;
+  border-bottom: 1px solid black;
+  padding: 20px 0;
+}
+
+.search-clie-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 90%;
+  font-size: 16px;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.item-checkbox-clien {
+  white-space: nowrap;
+  margin-top: 15px;
 }
 
 .lista-clientes {
   flex: 2;
-  display: flex;
   margin-top: 75px;
   max-height: 87vmin;
   overflow-y: auto;
   overflow-x: hidden;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
+  justify-content: flex-start;
 }
 
 .cod-cliente {
-  display: flex;
-  flex-direction: row;
   width: 95%;
   margin: 5px 15px;
   border-radius: 25px;
@@ -62,54 +95,6 @@
 
 .cliente-pendente {
   background-color: #ffdada;
-}
-
-.clientes-acao-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 95%;
-  border-bottom: 1px solid black;
-  padding-bottom: 20px;
-}
-
-.clientes-acao-container a {
-  display: flex;
-  align-items: center;
-  font-size: 15pt;
-  text-decoration: none;
-  background-color: #aaaaaa;
-  padding: 15px 20px;
-  border-radius: 30px;
-  color: black;
-  border: 1px solid rgb(92, 92, 92);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 5px #ccc;
-}
-
-.clientes-acao-container a:hover {
-  background-color: white;
-  padding: 15px 30px;
-  border-color: black;
-  box-shadow: 0 0 5px black;
-}
-
-.search-clie-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 95%;
-  border-bottom: 1px solid black;
-  padding: 20px 0;
-}
-
-.search-clie-container input {
-  padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 90%;
-    font-size: 16px;
-    text-align: center;
 }
 
 .informacoes-clientes p {

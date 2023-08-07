@@ -79,15 +79,15 @@ const Clientes = () => {
     }
 
     return (
-        <div className="clientes-container">
-            <div className="informacoes-clientes">
-                <h1 className='titulo-clientes'><BsPeopleFill style={{marginRight: '10px'}}/> Clientes</h1>
-                <div className="clientes-acao-container">
-                    <Link to={'/clientes/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR CLIENTE</Link>
+        <div className="clientes-container fbrc">
+            <div className="informacoes-clientes fbcc">
+                <h1 className='titulo-clientes fbrc'><BsPeopleFill style={{marginRight: '10px'}}/> Clientes</h1>
+                <div className="clientes-acao-container fbcc">
+                    <Link className='fbrc' to={'/clientes/add'}><AiOutlinePlusCircle style={{marginRight: '5px', fontSize: '20pt'}}/>ADICIONAR CLIENTE</Link>
                 </div>
-                <div className="search-clie-container">
+                <div className="search-clie-container fbcc">
                     <input type="text" name='titulo' onChange={(e) => setSearchClien(e.target.value)} placeholder='Pesquisar nome...'/>
-                    <div className="item-checkbox-prod">
+                    <div className="item-checkbox-clien fbrc">
                         <input id='pendentes-clien' type="checkbox" name='pendentes'/>
                         <label htmlFor='pendentes-clien'>Somente pendentes</label>
                     </div>
@@ -95,19 +95,19 @@ const Clientes = () => {
                 <p style={{marginTop: '15px'}}>Nº DE CLIENTES: <b>{ClienList.length}</b></p>
                 <p>CLIENTES PENDENTES: <b>{ClienPen}</b></p>
             </div>
-            <div className="lista-clientes">
+            <div className="lista-clientes fbcc">
                 {ClienList.map((clien) => (
                     clien.nome.toLowerCase().includes(searchClien.toLowerCase()) ? (
                         document.getElementById('pendentes-clien').checked ? (
                             ProdCli(clien.id)[1] > 0 ? (
-                                <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
+                                <div className={'cod-cliente fbrc' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
                                     <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
                                     <p style={{flex: '2'}}><b>{clien.nome}</b></p>
                                     <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>
                                 </div>
                             ) : null
                         ) : (
-                            <div className={'cod-cliente' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
+                            <div className={'cod-cliente fbrc' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
                                 <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
                                 <p style={{flex: '2'}}><b>{clien.nome}</b></p>
                                 <p style={{flex: '1'}}>Produtos: {ProdCli(clien.id)[0]}</p>

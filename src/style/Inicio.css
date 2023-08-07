@@ -1,16 +1,9 @@
 .inicio-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vmin;
 }
 
 .painel-info-inicio, .bem-vindo-inicio, .painel-acao-inicio {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 75px;
   height: 87vmin;
 }
