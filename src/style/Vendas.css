@@ -1,21 +1,21 @@
 .vendas-container {
-    align-items: normal;
-    min-height: 100vmin;
-    color: hsl(0, 0%, 15%);
+  align-items: normal;
+  min-height: 100vmin;
+  color: hsl(0, 0%, 15%);
 }
 
 .informacoes-vendas {
-    flex: 1.5;
-    padding-top: 85px;
-    background-color: white;
-    box-shadow: 0 0 5px #ccc;
-    justify-content: flex-start;
+  flex: 1.5;
+  padding-top: 85px;
+  background-color: white;
+  box-shadow: 0 0 5px #ccc;
+  justify-content: flex-start;
 }
 
 .titulo-vendas {
-    border-bottom: 1px solid #444444;
-    width: 95%;
-    padding-bottom: 15px;
+  border-bottom: 1px solid #444444;
+  width: 95%;
+  padding-bottom: 15px;
 }
 
 .vendas-acao-container {
@@ -44,11 +44,46 @@
 }
 
 .lista-vendas {
-    flex: 2;
-    margin-top: 75px;
-    max-height: 87vmin;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 100%;
-    justify-content: flex-start;
+  flex: 2;
+  margin-top: 75px;
+  max-height: 87vmin;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.item-venda {
+  width: 95%;
+  margin: 5px 15px;
+  border-radius: 25px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  box-shadow: 0 0 5px #ccc;
+  font-size: 12pt;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.item-venda:hover {
+  border-color: #ab2b33;
+  color: #ab2b33;
+  box-shadow: 0 0 2px #ab2b33;
+  width: 99%;
+}
+
+.id-box-item-venda {
+  justify-content: space-between;
+  width: 85%;
+  border-bottom: 1px solid #ccc;
+}
+
+.desc-item-vend {
+  flex: 2;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+  width: 100%;
+  margin: 0;
+  white-space: pre-line;
 }
