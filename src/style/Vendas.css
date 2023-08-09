@@ -81,9 +81,12 @@
 
 .desc-item-vend {
   flex: 2;
-  border-bottom: 1px solid #ccc;
-  padding: 15px 0;
+  margin: 15px 0;
+  padding: 2px 0;
   width: 100%;
-  margin: 0;
-  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
