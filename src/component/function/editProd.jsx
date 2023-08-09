@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-import '../style/components/editProd.css'
+import '../../style/components/function/editProd.css'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { useParams } from 'react-router-dom'
 

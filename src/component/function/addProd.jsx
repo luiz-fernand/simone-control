@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-import '../style/components/addProd.css'
+import '../../style/components/function/addProd.css'
 import {AiOutlinePlus} from 'react-icons/ai'
 
 const AdicionarProduto = () => {

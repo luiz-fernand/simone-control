@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-import '../style/components/addClien.css'
+import '../../style/components/function/addClien.css'
 import {AiOutlinePlus} from 'react-icons/ai'
 
 const AdicionarCliente = () => {
