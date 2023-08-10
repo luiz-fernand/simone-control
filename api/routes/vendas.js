@@ -1,12 +1,12 @@
 import express from 'express'
-import {getVendas, getVendaById, getVendasByDate, addVenda, editVenda, delVenda} from '../controllers/venda.js'
+import {getVendaById, getVendasByDate, getVendasBySDate, addVenda, editVenda, delVenda} from '../controllers/venda.js'
 
 const router = express.Router()
 
-router.get('/', getVendas)
 router.post('/', addVenda)
 router.get('/:id', getVendaById)
 router.get('/data/:data1-:data2', getVendasByDate)
+router.get('/data/:data1', getVendasBySDate)
 router.put('/:id', editVenda)
 router.delete('/:id', delVenda)
 

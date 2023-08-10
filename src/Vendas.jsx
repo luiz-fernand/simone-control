@@ -41,8 +41,11 @@ const Vendas = () => {
     }, [preVendList])
 
     const getVendas = async () => {
+        const data1 = document.getElementById('data-venda-1').value
+        const data2 = document.getElementById('data-venda-2').value
+
         try {
-            const res = await axios.get('http://localhost:8800/vendas')
+            const res = await axios.get(`http://localhost:8800/vendas/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
             setPreVendList(res.data)
         } catch(error) {
             console.log(error)
@@ -70,11 +73,11 @@ const Vendas = () => {
                     <p>Buscar por data:</p>
                     <div className="fbrc">
                         <p style={{ marginRight: '15px' }}>De:</p>
-                        <input type="date" name="" id="" />
+                        <input type="date" name="data1" id="data-venda-1" onChange={() => getVendas()}/>
                     </div>
                     <div className="fbrc">
                         <p style={{ marginRight: '15px' }}>Até:</p>
-                        <input type="date" name="" id="" />
+                        <input type="date" name="data2" id="data-venda-2" onChange={() => getVendas()}/>
                     </div>
                 </div>
                 <p style={{ marginBottom: '5px', }}>Nº DE VENDAS: <b>{VendList.length}</b></p>

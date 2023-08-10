@@ -1,14 +1,5 @@
 import { db } from "../db.js"
 
-export const getVendas = (_, res) => {
-    const q = 'SELECT * FROM venda'
-
-    db.query(q, (err, data) => {
-        if(err) return res.json(err)
-        return res.status(200).json(data)
-    })
-}
-
 export const getVendaById = (req, res) => {
     const q = 'SELECT * FROM venda WHERE `id` = ?'
 
@@ -22,6 +13,15 @@ export const getVendasByDate = (req, res) => {
     const q = 'SELECT * FROM venda WHERE `data` >= ? AND `data` <= ?'
 
     db.query(q, [req.params.data1, req.params.data2],(err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
+export const getVendasBySDate = (req, res) => {
+    const q = 'SELECT * FROM venda WHERE `data` >= ?'
+
+    db.query(q, [req.params.data1],(err, data) => {
         if(err) return res.json(err)
         return res.status(200).json(data)
     })
