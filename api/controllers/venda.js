@@ -18,6 +18,15 @@ export const getVendaById = (req, res) => {
     })
 }
 
+export const getVendasByDate = (req, res) => {
+    const q = 'SELECT * FROM venda WHERE `data` >= ? AND `data` <= ?'
+
+    db.query(q, [req.params.data1, req.params.data2],(err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
 export const addVenda = (req, res) => {
     const q = 'INSERT INTO cliente(`descricao`, `produtos`, `data`, `valor-total`) VALUES(?)'
 
