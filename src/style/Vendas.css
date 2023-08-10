@@ -43,6 +43,12 @@
   box-shadow: 0 0 5px black;
 }
 
+.date-search-vendas {
+  border-bottom: 1px solid black;
+  width: 95%;
+  padding-bottom: 10px;
+}
+
 .lista-vendas {
   flex: 2;
   margin-top: 75px;

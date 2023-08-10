@@ -12,19 +12,31 @@ const Vendas = () => {
     const [preVendList, setPreVendList] = useState([])
     const [VendList, setVendList] = useState([])
     const [selectedVenda, setSelectedVenda] = useState(null)
+    const [vendasTotais, setVendasTotais] = useState(0.0)
+    const [totalProd, setTotalProd] = useState(0)
 
     useEffect(() => {
         getVendas()
 
         const tempList = []
+        let vt = 0
+        let cont = 0
 
         preVendList.forEach((vend) => {
             const prodJson = JSON.parse(vend.produtos)
+
             const newData = new Date(vend.data)
-            const itemListaVend = [{'id': vend.id, 'descricao': vend.descricao, 'produtos': prodJson, 'data': newData.toLocaleString('pt-BR', { timeZone: 'UTC' }), 'valortotal': vend.valortotal}]
+            const attNewData = `${ newData.getDate().toString().padStart(2,'0') }/${ String(newData.getMonth() + 1).padStart(2,'0') }/${ newData.getFullYear() } - ${vend.hora}`
+            
+            vt += vend.valortotal
+            cont += prodJson.length
+
+            const itemListaVend = [{'id': vend.id, 'descricao': vend.descricao, 'produtos': prodJson, 'data': attNewData, 'valortotal': vend.valortotal}]
             tempList.push(itemListaVend)
         })
 
+        setVendasTotais(vt)
+        setTotalProd(cont)
         setVendList(tempList)
     }, [preVendList])
 
@@ -54,7 +66,20 @@ const Vendas = () => {
                 <div className="vendas-acao-container fbcc">
                     <Link className="fbrc"><MdAttachMoney style={{marginRight: '5px', fontSize: '20pt'}}/>VENDER</Link>
                 </div>
-                <p>Nº DE VENDAS: <b>{VendList.length}</b></p>
+                <div className="date-search-vendas fbcc">
+                    <p>Buscar por data:</p>
+                    <div className="fbrc">
+                        <p style={{ marginRight: '15px' }}>De:</p>
+                        <input type="date" name="" id="" />
+                    </div>
+                    <div className="fbrc">
+                        <p style={{ marginRight: '15px' }}>Até:</p>
+                        <input type="date" name="" id="" />
+                    </div>
+                </div>
+                <p style={{ marginBottom: '5px', }}>Nº DE VENDAS: <b>{VendList.length}</b></p>
+                <p style={{ margin: '5px 0', }}>TOTAL DAS VENDAS: <b>R$ {vendasTotais}</b></p>
+                <p style={{ marginTop: '5px', }}>PRODUTOS MOVIMENTADOS: <b>{totalProd}</b></p>
             </div>
             <div className="lista-vendas fbcc">
                 {VendList.map((vend) => (
