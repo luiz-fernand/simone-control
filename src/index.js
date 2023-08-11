@@ -17,6 +17,7 @@ import AdicionarCliente from './component/function/addClien'
 import EditarCliente from './component/function/editClien'
 
 import Vendas from './Vendas'
+import AdicionarVenda from './component/function/addVenda'
 
 import Comissoes from './Comissoes'
 
@@ -33,6 +34,7 @@ root.render(
         <Route path='/clientes/add' element={<AdicionarCliente/>}/>
         <Route path='/clientes/edit/:id' element={<EditarCliente/>}/>
       <Route path='/vendas' element={<Vendas/>}/>
+        <Route path='/vendas/add' element={<AdicionarVenda/>}/>
       <Route path='/comissoes' element={<Comissoes/>}/>
     </Routes>
   </BrowserRouter>

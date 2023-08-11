@@ -27,6 +27,15 @@ export const getProdutoByCliente = (req, res) => {
     })
 }
 
+export const getProdutoByStatus = (req, res) => {
+    const q = 'SELECT * FROM produto WHERE `status` = ?'
+
+    db.query(q, [req.params.status],(err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
 export const addProduto = (req, res) => {
     const q = 'INSERT INTO produto(`cliente`, `tipo`, `descricao`, `tamanho`, `valor`) VALUES(?)'
 

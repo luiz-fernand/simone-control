@@ -67,7 +67,7 @@ const Vendas = () => {
             <div className="informacoes-vendas fbcc">
                 <h1 className="titulo-vendas fbrc"><BsShop style={{marginRight: '10px'}}/> Vendas</h1>
                 <div className="vendas-acao-container fbcc">
-                    <Link className="fbrc"><MdAttachMoney style={{marginRight: '5px', fontSize: '20pt'}}/>VENDER</Link>
+                    <Link to={'/vendas/add'} className="fbrc"><MdAttachMoney style={{marginRight: '5px', fontSize: '20pt'}}/>VENDER</Link>
                 </div>
                 <div className="date-search-vendas fbcc">
                     <p>Buscar por data:</p>
