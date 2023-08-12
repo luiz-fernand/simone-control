@@ -21,7 +21,7 @@
     font-weight: bold;
 }
 
-.item-form-add-venda input, .item-form-add-venda textarea {
+.item-form-add-venda input, .item-form-add-venda textarea, #pesquisa-add-vend {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 7px;
@@ -35,10 +35,58 @@
     resize: none;
 }
 
+.salvar-venda-button {
+    background-color: #ab2b33;
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.salvar-venda-button:hover {
+    background-color: white;
+    color: #ab2b33;
+    border-color: #ab2b33;
+}
+
 .box-itens-venda {
     flex: 1;
     height: 450px;
+    width: 100%;
+    justify-content: flex-start;
     margin: 75px 70px 0 10px;
     background-color: white;
     box-shadow: 0 0 5px #ccc;
+}
+
+#pesquisa-add-vend {
+    margin: 15px;
+    width: 85%;
+}
+
+.itens-lista-add-vend {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.item-disp-add-venda {
+    width: 95%;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.item-disp-add-venda:hover {
+    background-color: #ccc;
+}
+
+.pro-select-add-vend {
+    background-color: #eee;
+    border-left: 2px solid black;
 }
