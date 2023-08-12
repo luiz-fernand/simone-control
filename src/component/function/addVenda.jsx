@@ -22,22 +22,23 @@ const AdicionarVenda = () => {
     return (
         <div className="adicionar-venda-container fbrc">
             <div className="box-dados-add-venda fbcc">
-                <form>
-                    <div className="item-form-add-venda">
+                <h1>Vender</h1>
+                <form style={{ width: '100%' }}>
+                    <div className="item-form-add-venda fbcc" style={{ width: '100%' }}>
                         <label htmlFor="descricao-add-vend">Descrição</label>
-                        <textarea name="descricao" id="descricao-add-vend"/>
+                        <textarea name="descricao" rows='4' id="descricao-add-vend"/>
                     </div>
-                    <div className="item-form-add-venda">
+                    <div className="item-form-add-venda fbcc">
                         <label htmlFor="data-add-vend">Data</label>
                         <input type="date" name="data" id="data-add-vend"/>
                     </div>
-                    <div className="item-form-add-venda">
+                    <div className="item-form-add-venda fbcc">
                         <label htmlFor="hora-add-vend">Hora</label>
                         <input type="time" name="hora" id="hora-add-vend"/>
                     </div>
-                    <div className="item-form-add-venda">
-                        <label htmlFor="total-add-vend">Descrição</label>
-                        <input type="text" name="valortotal" id="total-add-vend" disabled/>
+                    <div className="item-form-add-venda fbcc">
+                        <label htmlFor="total-add-vend">Valor Total</label>
+                        <input type="number" step='any' name="valortotal" id="total-add-vend" placeholder='R$' disabled/>
                     </div>
                 </form>
             </div>

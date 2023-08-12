@@ -1,3 +1,44 @@
 .adicionar-venda-container {
     min-height: 100vmin;
 }
+
+.box-dados-add-venda {
+    flex: 1;
+    height: 450px;
+    width: 100%;
+    margin: 75px 10px 0 70px;
+    background-color: white;
+    box-shadow: 0 0 5px #ccc;
+    justify-content: flex-start;
+}
+
+.item-form-add-venda {
+    margin-bottom: 15px;
+}
+
+.item-form-add-venda label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.item-form-add-venda input, .item-form-add-venda textarea {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+    text-align: center;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.item-form-add-venda textarea {
+    width: 80%;
+    resize: none;
+}
+
+.box-itens-venda {
+    flex: 1;
+    height: 450px;
+    margin: 75px 70px 0 10px;
+    background-color: white;
+    box-shadow: 0 0 5px #ccc;
+}
