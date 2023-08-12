@@ -37,6 +37,22 @@ const AdicionarVenda = () => {
         }
     }
 
+    const editarProd = async (id) => {
+        const prodID = ProdList.findIndex((prod) => prod.id === id)
+
+        await axios.put(`http://localhost:8800/produtos/${id}`,{
+            tipo: ProdList[prodID].tipo,
+            descricao: ProdList[prodID].descricao,
+            tamanho: ProdList[prodID].tamanho,
+            valor: ProdList[prodID].valor,
+            status: 1
+        })
+        .then(({data}) => {
+            console.log(data)
+        })
+        .catch(({data}) => window.alert(data))
+    }
+
     const salvarVenda = async (e) => {
         e.preventDefault()
         const user = ref.current
@@ -44,6 +60,7 @@ const AdicionarVenda = () => {
 
         if(valorTotal === 0) alert('Selecione pelo menos 1 item!')
         else {
+            selectedItens.forEach((prod) => editarProd(prod.id))
             await axios.post('http://localhost:8800/vendas',{
                 descricao: user.descricao.value,
                 produtos: parsed,
