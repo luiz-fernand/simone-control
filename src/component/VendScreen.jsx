@@ -48,14 +48,16 @@ const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
                     </div>
                 </div>
                 <div className="fbcc" style={{ flex: 1, height: '400px', justifyContent: 'flex-start', marginTop: '35px', overflowY: 'auto' }}>
-                    { venda.produtos.map((prod) => (
+                    { venda.produtos.map((prod) => {
+                        const indxPro = ProdList.findIndex((pro) => pro.id === prod.id)
+                        return (
                         <div id='item-venda-list' className="fbrc" style={{ width: '100%', justifyContent: 'space-around' }} key={prod.id}>
-                            <p>#{ ProdList[prod.id - 1]?.cliente }-{ ProdList[prod.id - 1]?.id }</p>
-                            <p>{ ProdList[prod.id - 1]?.tipo } { ProdList[prod.id - 1]?.descricao }</p>
-                            <p>{ ProdList[prod.id - 1]?.tamanho }</p>
-                            <p>R$ { ProdList[prod.id - 1]?.valor }</p>
+                            <p>#{ ProdList[indxPro]?.cliente }-{ ProdList[indxPro]?.id }</p>
+                            <p>{ ProdList[indxPro]?.tipo } { ProdList[indxPro]?.descricao }</p>
+                            <p>{ ProdList[indxPro]?.tamanho }</p>
+                            <p>R$ { ProdList[indxPro]?.valor }</p>
                         </div>
-                    )) }
+                    )}) }
                     <div className="fbcc" style={{ width: '85%', borderTop: '1px solid #ccc', marginTop: '15px' }}>
                         <p style={{ marginBottom: '5px' }}>TOTAL: <b>R$ { venda.valortotal }</b></p>
                     </div>
