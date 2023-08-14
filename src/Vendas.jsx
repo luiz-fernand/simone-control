@@ -11,12 +11,14 @@ import VendScreen from './component/VendScreen'
 const Vendas = () => {
     const [preVendList, setPreVendList] = useState([])
     const [VendList, setVendList] = useState([])
+    const [ProdList, setProdList] = useState([])
     const [selectedVenda, setSelectedVenda] = useState(null)
     const [vendasTotais, setVendasTotais] = useState(0.0)
     const [totalProd, setTotalProd] = useState(0)
 
     useEffect(() => {
         getVendas()
+        getProdutos()
 
         const tempList = []
         let vt = 0
@@ -52,6 +54,15 @@ const Vendas = () => {
         }
     }
 
+    const getProdutos = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8800/produtos`)
+            setProdList(res.data)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
     const openVendScreen = (prod) => {
         setSelectedVenda(prod)
         document.documentElement.style.pointerEvents = 'none'
@@ -60,6 +71,52 @@ const Vendas = () => {
     const closeVendScreen = () => {
         setSelectedVenda(null)
         document.documentElement.style.pointerEvents = 'all'
+    }
+
+    const excluirVenda = async (venda) => {
+        venda?.produtos.forEach(async (pro) => {
+            await axios.delete(`http://localhost:8800/produtos/${pro.id}`)
+            .then(({data}) => {
+                console.log(data)
+            })
+            .catch(({data}) => window.alert(data))
+        })
+
+        await axios.delete(`http://localhost:8800/vendas/${venda.id}`)
+            .then(({data}) => {
+                const newArray = VendList.filter((vend) => vend.id !== venda.id)
+                setVendList(newArray)
+                window.alert(data)
+            })
+            .catch(({data}) => console.log(data))
+        closeVendScreen()
+    }
+
+    const desfazerVenda = async (venda) => {
+        venda?.produtos.forEach(async (pro) => {
+            const prodID = ProdList.findIndex((prod) => prod.id === pro.id)
+
+            await axios.put(`http://localhost:8800/produtos/${pro.id}`,{
+                tipo: ProdList[prodID].tipo,
+                descricao: ProdList[prodID].descricao,
+                tamanho: ProdList[prodID].tamanho,
+                valor: ProdList[prodID].valor,
+                status: 0
+            })
+            .then(({data}) => {
+                console.log(data)
+            })
+            .catch(({data}) => window.alert(data))
+        })
+
+        await axios.delete(`http://localhost:8800/vendas/${venda?.id}`)
+            .then(({data}) => {
+                const newArray = VendList.filter((vend) => vend.id !== venda.id)
+                setVendList(newArray)
+                window.alert(data)
+            })
+            .catch(({data}) => console.log(data))
+        closeVendScreen()
     }
     
     return (
@@ -98,7 +155,7 @@ const Vendas = () => {
                     </div>
                 ))}
             </div>
-            {selectedVenda && <VendScreen venda={selectedVenda} onClose={closeVendScreen}/>}
+            {selectedVenda && <VendScreen venda={selectedVenda} onClose={closeVendScreen} excluirVenda={excluirVenda} desfazerVenda={desfazerVenda}/>}
         </div>
     )
 }
