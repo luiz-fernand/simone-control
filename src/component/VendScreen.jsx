@@ -43,7 +43,7 @@ const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
                         <p className='desc-venda-screen' style={{ marginTop: '15px', whiteSpace: 'pre-line', textAlign: 'center' }}><b>{venda.descricao}</b></p>
                     </div>
                     <div className="venda-screen-acao fbrc">
-                        <Link className='btn-vndscr-1 fbrc'><AiOutlineEdit style={{ marginRight: '5px', fontSize: '18pt' }}/>Editar</Link>
+                        <Link to={`/vendas/edit/${venda.id}`} className='btn-vndscr-1 fbrc'><AiOutlineEdit style={{ marginRight: '5px', fontSize: '18pt' }}/>Editar</Link>
                         <button className='btn-vndscr-2 fbrc' onClick={() => openConfirmScreen(venda)}><RiDeleteBinLine style={{ marginRight: '5px', fontSize: '18pt' }}/>Excluir</button>
                     </div>
                 </div>
