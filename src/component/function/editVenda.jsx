@@ -6,137 +6,143 @@ import { GiConfirmed } from 'react-icons/gi'
 import '../../style/components/function/addVendas.css'
 
 const EditarVenda = () => {
-    const { id } = useParams()
     const ref = useRef()
+    const { id } = useParams()
     const [ Venda, setVenda ] = useState([])
     const [ ProdList, setProdList ] = useState([])
-
-    const [ selectedItens, setSelectedItens ] = useState([])
-    const [ valorTotal, setValorTotal ] = useState(0.0)
     const [ procurarProduto, setProcurarProduto ] = useState('')
 
     useEffect(() => {
+        document.documentElement.style.pointerEvents = 'all'
         getProdutos()
         getVenda()
-    })
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
     const getProdutos = async () => {
         try {
-            const res = await axios.get('http://localhost:8800/produtos/status/0')
+            const res = await axios.get('http://localhost:8800/produtos/')
             setProdList(res.data)
         } catch (error) {
             console.log(error)
         }
     }
-
+    
     const getVenda = async () => {
         try {
             const res = await axios.get(`http://localhost:8800/vendas/${id}`)
-            setVenda(res.data)
+
+            const newData = String(res.data[0]?.data).split('T')[0]
+            const jsonProdutos = JSON.parse(res.data[0]?.produtos)
+            const preVenda = {id: res.data[0].id, descricao: res.data[0].descricao, data: newData, hora: res.data[0].hora, produtos: jsonProdutos, valorTotal: res.data[0].valortotal}
+
+            setVenda(preVenda)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const selecionarProduto = (p) => {
-        const ver = selectedItens.some((v) => v.id === p.id)
+    const editarVenda = async (e) => {
+        e.preventDefault()
+        const parsed = JSON.stringify(Venda?.produtos)
 
-        if (!ver) {
-            setSelectedItens([...selectedItens, { id: p.id }])
-            setValorTotal(valorTotal + p.valor)
-        } else {
-            const updatedSelectedItens = selectedItens.filter((v) => v.id !== p.id)
-            setSelectedItens(updatedSelectedItens)
-            setValorTotal(valorTotal - p.valor)
-        }
-    }
-
-    const editarProd = async (id) => {
-        const prodID = ProdList.findIndex((prod) => prod.id === id)
-
-        await axios.put(`http://localhost:8800/produtos/${id}`,{
-            tipo: ProdList[prodID].tipo,
-            descricao: ProdList[prodID].descricao,
-            tamanho: ProdList[prodID].tamanho,
-            valor: ProdList[prodID].valor,
-            status: 1
+        await axios.put(`http://localhost:8800/vendas/${id}`,{
+            descricao: Venda?.descricao,
+            produtos: parsed,
+            data: Venda?.data,
+            hora: Venda?.hora,
+            valortotal: Venda?.valortotal
         })
         .then(({data}) => {
-            console.log(data)
+            window.alert(data)
+            // window.location.replace('http://localhost:3000/vendas')
         })
-        .catch(({data}) => window.alert(data))
+        .catch((error) => console.log(error))
     }
 
-    const salvarVenda = async (e) => {
-        e.preventDefault()
-        const user = ref.current
-        const parsed = JSON.stringify(selectedItens)
-
-        if(valorTotal === 0) alert('Selecione pelo menos 1 item!')
-        else {
-            selectedItens.forEach((prod) => editarProd(prod.id))
-            await axios.post('http://localhost:8800/vendas',{
-                descricao: user.descricao.value,
-                produtos: parsed,
-                data: user.data.value,
-                hora: user.hora.value,
-                valortotal: user.valortotal.value
-            })
-            .then(({data}) => {
-                window.alert(data)
-                window.location.replace('http://localhost:3000/vendas')
-            })
-            .catch(({data}) => console.log(data))
-        }
+    const handleDescriptionChange = (e) => {
+        const newDescription = e.target.value;
+        setVenda((prevVenda) => ({ ...prevVenda, descricao: newDescription }));
+    }
+    
+    const handleDateChange = (e) => {
+        const newDate = e.target.value;
+        setVenda((prevVenda) => ({ ...prevVenda, data: newDate }));
+    }
+    
+    const handleTimeChange = (e) => {
+        const newTime = e.target.value;
+        setVenda((prevVenda) => ({ ...prevVenda, hora: newTime }));
     }
 
     return (
         <div className="adicionar-venda-container fbrc">
             <div className="box-dados-add-venda fbcc">
-                <h1>Vender</h1>
-                <form style={{ width: '100%' }} ref={ref} onSubmit={salvarVenda}>
+                <h1>Venda</h1>
+                <form style={{ width: '100%' }} ref={ref} onSubmit={editarVenda}>
                     <div className="fbrc">
                         <div className="item-form-add-venda fbcc">
                             <label htmlFor="id-add-vend">ID</label>
-                            <input type="text" name="id" id="id-add-vend" value={ Venda[0]?.id } disabled/>
+                            <input type="text" name="id" id="id-add-vend" value={ Venda?.id } disabled/>
                         </div>
                         <div className="item-form-add-venda fbcc">
                             <label htmlFor="total-add-vend">Valor Total</label>
-                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ valorTotal } disabled/>
+                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ Venda?.valorTotal } disabled/>
                         </div>
                     </div>
                     <div className="item-form-add-venda fbcc" style={{ width: '100%' }}>
                         <label htmlFor="descricao-add-vend">Descrição</label>
-                        <textarea name="descricao" rows='4' id="descricao-add-vend" value={ Venda[0]?.descricao }/>
+                        <textarea
+                            name="descricao"
+                            rows="4"
+                            id="descricao-add-vend"
+                            value={Venda.descricao}
+                            onChange={handleDescriptionChange}
+                        />
                     </div>
                     <div className="fbrc">
                         <div className="item-form-add-venda fbcc" style={{ marginRight: '5px' }}>
                             <label htmlFor="data-add-vend">Data</label>
-                            <input type="text" name="data" id="data-add-vend" value={ '2023-08-14' } disabled/>
+                            <input
+                                type="date"
+                                name="data"
+                                id="data-add-vend"
+                                value={Venda.data}
+                                onChange={handleDateChange}
+                            />
                         </div>
                         <div className="item-form-add-venda fbcc" style={{ marginLeft: '5px' }}>
                             <label htmlFor="hora-add-vend">Hora</label>
-                            <input type="text" name="hora" id="hora-add-vend" disabled/>
+                            <input
+                                type="time"
+                                name="hora"
+                                id="hora-add-vend"
+                                value={Venda.hora}
+                                onChange={handleTimeChange}
+                            />
                         </div>
                     </div>
                     <div className="fbrc" style={{ marginTop: '30px' }}>
-                        <button className="salvar-venda-button fbrc"><GiConfirmed style={{ marginRight: '5px', fontSize: '20px' }}/>EDITAR</button>
+                        <button type='submit' className="salvar-venda-button fbrc"><GiConfirmed style={{ marginRight: '5px', fontSize: '20px' }}/>EDITAR</button>
                     </div>
                 </form>
             </div>
             <div className="box-itens-venda fbcc">
                 <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' onChange={(e) => setProcurarProduto(e.target.value)}/>
                 <div className="itens-lista-add-vend fbcc">
-                    {ProdList.map((pro) => (
-                        (pro.tipo.toLowerCase() + ' ' + pro.descricao.toLowerCase()).includes(procurarProduto.toLowerCase()) ? (
-                            <div className={`item-disp-add-venda fbrc ${ selectedItens.some((item) => item.id === pro.id) ? 'pro-select-add-vend' : '' }`} onClick={() => selecionarProduto(pro)} key={pro.id}>
-                                <p>{`#${ pro.cliente }-${ pro.id }`}</p>
-                                <p>{`${ pro.tipo } ${ pro.descricao }`}</p>
-                                <p>{ pro.tamanho }</p>
-                                <p>{`R$ ${ pro.valor }`}</p>
-                            </div>
-                        ) : null
-                    ))}
+                    {Venda.produtos !== undefined ? Venda.produtos.map((p) => {
+                        const idxProd = ProdList.findIndex((pro) => pro.id === p.id)
+                        return (
+                            (ProdList[idxProd].tipo.toLowerCase() + ' ' + ProdList[idxProd].descricao.toLowerCase()).includes(procurarProduto.toLowerCase()) ? (
+                                <div className={`item-disp-add-venda fbrc pro-select-add-vend`} key={p.id}>
+                                    <p>{`#${ ProdList[idxProd].cliente }-${ ProdList[idxProd].id }`}</p>
+                                    <p>{`${ ProdList[idxProd].tipo } ${ ProdList[idxProd].descricao }`}</p>
+                                    <p>{ ProdList[idxProd].tamanho }</p>
+                                    <p>{`R$ ${ ProdList[idxProd].valor }`}</p>
+                                </div>
+                            ) : null
+                        )
+                    }) : null}
                 </div>
             </div>
         </div>
@@ -144,3 +150,4 @@ const EditarVenda = () => {
 }
  
 export default EditarVenda
+
