@@ -19,6 +19,7 @@ const EditarVenda = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
+    console.log(Venda)
     const getProdutos = async () => {
         try {
             const res = await axios.get('http://localhost:8800/produtos/')
@@ -34,7 +35,7 @@ const EditarVenda = () => {
 
             const newData = String(res.data[0]?.data).split('T')[0]
             const jsonProdutos = JSON.parse(res.data[0]?.produtos)
-            const preVenda = {id: res.data[0].id, descricao: res.data[0].descricao, data: newData, hora: res.data[0].hora, produtos: jsonProdutos, valorTotal: res.data[0].valortotal}
+            const preVenda = {id: res.data[0].id, descricao: res.data[0].descricao, data: newData, hora: res.data[0].hora, produtos: jsonProdutos, valortotal: res.data[0].valortotal}
 
             setVenda(preVenda)
         } catch (error) {
@@ -55,7 +56,7 @@ const EditarVenda = () => {
         })
         .then(({data}) => {
             window.alert(data)
-            // window.location.replace('http://localhost:3000/vendas')
+            window.location.replace('http://localhost:3000/vendas')
         })
         .catch((error) => console.log(error))
     }
@@ -87,7 +88,7 @@ const EditarVenda = () => {
                         </div>
                         <div className="item-form-add-venda fbcc">
                             <label htmlFor="total-add-vend">Valor Total</label>
-                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ Venda?.valorTotal } disabled/>
+                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ Venda?.valortotal } disabled/>
                         </div>
                     </div>
                     <div className="item-form-add-venda fbcc" style={{ width: '100%' }}>
