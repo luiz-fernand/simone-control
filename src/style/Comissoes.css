@@ -1,0 +1,23 @@
+.comissoes-container {
+    align-items: normal;
+    min-height: 100vmin;
+    color: #262626;
+}
+
+.menu-comissoes {
+    flex: 1.5;
+    padding-top: 85px;
+    background-color: white;
+    box-shadow: 0 0 5px #ccc;
+    justify-content: flex-start;
+}
+
+.lista-comissoes {
+    flex: 2;
+    margin-top: 75px;
+    max-height: 87vmin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    justify-content: flex-start;
+}
