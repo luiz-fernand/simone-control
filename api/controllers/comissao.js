@@ -45,15 +45,14 @@ export const addComissao = (req, res) => {
 }
 
 export const editComissao = (req, res) => {
-    const q = 'UPDATE comissao SET `cliente` = ?, `descricao` = ?, `data` = ?, `hora` = ?, `valor` = ?, `status` = ? WHERE `id` = ?'
+    const q = 'UPDATE comissao SET `cliente` = ?, `descricao` = ?, `data` = ?, `hora` = ?, `valor` = ? WHERE `id` = ?'
 
     const values = [
         req.body.cliente,
         req.body.descricao,
         req.body.data,
         req.body.hora,
-        req.body.valor,
-        req.body.status
+        req.body.valor
     ]
 
     db.query(q, [...values, req.params.id],(err) => {
