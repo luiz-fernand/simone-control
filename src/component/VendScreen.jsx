@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -10,6 +10,11 @@ import ConfirmBox from './function/confirmBox2'
 const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
     const [ ProdList, setProdList ] = useState([])
     const [ VendaSelected, setVendaSelected ] = useState(null)
+
+    useEffect(() => {
+        getProdutos()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getProdutos = async () => {
         try {
@@ -28,7 +33,6 @@ const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
         setVendaSelected(null)
     }
 
-    getProdutos()
 
     return (
         <div className="venda-screen-overlay fbcc">

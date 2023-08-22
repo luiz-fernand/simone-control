@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
@@ -10,6 +10,10 @@ import '../style/components/ClienScreen.css'
 const ClienScreen = ({cliente, onClose, excluirClien}) => {
     const [Produtos, setProdutos] = useState([])
     
+    useEffect(() => {
+        getProdutosByCliente()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const getProdutosByCliente = async () => {
         try {
             const res = await axios.get(`http://localhost:8800/produtos/cliente/${cliente.id}`)
@@ -18,8 +22,6 @@ const ClienScreen = ({cliente, onClose, excluirClien}) => {
             console.log(error)
         }
     }
-
-    getProdutosByCliente()
 
     const confirmacaoDelete = () => {
         var conf = window.confirm("Tem certeza que deseja EXCLUIR?")

@@ -10,7 +10,7 @@ const AdicionarProduto = () => {
 
     useEffect(() => {
         getClientes()
-    })
+    }, [])
 
     const getClientes = async () => {
         try {

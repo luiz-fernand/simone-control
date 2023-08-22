@@ -9,7 +9,6 @@ import './style/Vendas.css'
 import VendScreen from './component/VendScreen'
 
 const Vendas = () => {
-    const [preVendList, setPreVendList] = useState([])
     const [VendList, setVendList] = useState([])
     const [ProdList, setProdList] = useState([])
     const [selectedVenda, setSelectedVenda] = useState(null)
@@ -19,28 +18,8 @@ const Vendas = () => {
     useEffect(() => {
         getVendas()
         getProdutos()
-
-        const tempList = []
-        let vt = 0
-        let cont = 0
-
-        preVendList.forEach((vend) => {
-            const prodJson = JSON.parse(vend.produtos)
-
-            const newData = new Date(vend.data)
-            const attNewData = `${ newData.getDate().toString().padStart(2,'0') }/${ String(newData.getMonth() + 1).padStart(2,'0') }/${ newData.getFullYear() } - ${vend.hora}`
-            
-            vt += vend.valortotal
-            cont += prodJson.length
-
-            const itemListaVend = [{'id': vend.id, 'descricao': vend.descricao, 'produtos': prodJson, 'data': attNewData, 'valortotal': vend.valortotal}]
-            tempList.push(itemListaVend)
-        })
-
-        setVendasTotais(vt)
-        setTotalProd(cont)
-        setVendList(tempList)
-    }, [preVendList])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getVendas = async () => {
         const data1 = document.getElementById('data-venda-1').value
@@ -48,7 +27,26 @@ const Vendas = () => {
 
         try {
             const res = await axios.get(`http://localhost:8800/vendas/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
-            setPreVendList(res.data)
+            const tempList = []
+            let vt = 0
+            let cont = 0
+
+            res.data.forEach((vend) => {
+                const prodJson = JSON.parse(vend.produtos)
+
+                const newData = new Date(vend.data)
+                const attNewData = `${ newData.getDate().toString().padStart(2,'0') }/${ String(newData.getMonth() + 1).padStart(2,'0') }/${ newData.getFullYear() } - ${vend.hora}`
+                
+                vt += vend.valortotal
+                cont += prodJson.length
+
+                const itemListaVend = [{'id': vend.id, 'descricao': vend.descricao, 'produtos': prodJson, 'data': attNewData, 'valortotal': vend.valortotal}]
+                tempList.push(itemListaVend)
+            })
+
+            setVendasTotais(vt)
+            setTotalProd(cont)
+            setVendList(tempList)
         } catch(error) {
             console.log(error)
         }

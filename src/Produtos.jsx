@@ -19,7 +19,6 @@ const Produtos = () => {
     const [searchProd, setSearchProd] = useState('')
     const [statusProd, setStatusProd] = useState(-1)
   
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getProdutos()
 
@@ -39,7 +38,8 @@ const Produtos = () => {
         setPd(disponiveis)
         setPv(vendidos)
         setPp(pagos)
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getProdutos = async () => {
         try {

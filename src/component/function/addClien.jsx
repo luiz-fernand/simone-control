@@ -5,28 +5,23 @@ import '../../style/components/function/addClien.css'
 import {AiOutlinePlus} from 'react-icons/ai'
 
 const AdicionarCliente = () => {
-    const [ListaCli, setListaCli] = useState([])
     const [UltimoId, setUltimoId] = useState(0)
     const ref = useRef()
 
     useEffect(() => {
         getClientes()
-        ultimoIdCliente()
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getClientes = async () => {
         try {
             const res = await axios.get('http://localhost:8800/clientes')
-            setListaCli(res.data)
+            let ultimo = res.data.length
+            let lastId = res.data[ultimo - 1]?.id
+            setUltimoId(lastId)
         } catch(error){
             console.log(error)
         }
-    }
-
-    const ultimoIdCliente = () => {
-        let ultimo = ListaCli.length
-        let lastId = ListaCli[ultimo - 1]?.id
-        setUltimoId(lastId)
     }
 
     const adicionarClien = async (e) => {

@@ -15,7 +15,6 @@ const Clientes = () => {
     const [selectedCliente, setSelectedCliente] = useState(null)
     const [searchClien, setSearchClien] = useState('')
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getClientes()
         getProdutos()
@@ -26,7 +25,8 @@ const Clientes = () => {
         })
 
         setClienPen(pen)
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getClientes = async () => {
         try {
