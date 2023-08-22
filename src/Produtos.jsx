@@ -26,7 +26,7 @@ const Produtos = () => {
 
     const getProdutos = async () => {
         try {
-            const res = await axios.get(`http://localhost:8800/produtos/${ statusProd === '-1' ? '' : ('status/' + statusProd) }`)
+            const res = await axios.get(`http://localhost:8800/produtos${ statusProd < 0 ? '' : ('/status/' + statusProd) }`)
             let totalProdutos = 0
             let disponiveis = 0
             let vendidos = 0
