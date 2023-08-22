@@ -21,29 +21,26 @@ const Produtos = () => {
   
     useEffect(() => {
         getProdutos()
-
-        editStatusSelect()
-
-        let totalProdutos = 0
-        let disponiveis = 0
-        let vendidos = 0
-        let pagos = 0
-  
-        ProdList.forEach((prod) => {
-            totalProdutos++
-            (prod.status === 0 ? disponiveis++ : (prod.status === 1 ? vendidos++ : pagos++))
-        })
-  
-        setNp(totalProdutos)
-        setPd(disponiveis)
-        setPv(vendidos)
-        setPp(pagos)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [statusProd])
 
     const getProdutos = async () => {
         try {
-            const res = await axios.get('http://localhost:8800/produtos')
+            const res = await axios.get(`http://localhost:8800/produtos/${ statusProd === '-1' ? '' : ('status/' + statusProd) }`)
+            let totalProdutos = 0
+            let disponiveis = 0
+            let vendidos = 0
+            let pagos = 0
+    
+            res.data.forEach((prod) => {
+                totalProdutos++
+                (prod.status === 0 ? disponiveis++ : (prod.status === 1 ? vendidos++ : pagos++))
+            })
+    
+            setNp(totalProdutos)
+            setPd(disponiveis)
+            setPv(vendidos)
+            setPp(pagos)
             setProdList(res.data)
         } catch(error){
             console.log(error)
@@ -71,14 +68,6 @@ const Produtos = () => {
         closeProdScreen()
     }
 
-    const editStatusSelect = () => {
-        const radioCk = document.getElementsByName('statusCk')
-        if(radioCk[0].checked) setStatusProd(-1)
-        if(radioCk[1].checked) setStatusProd(0)
-        if(radioCk[2].checked) setStatusProd(1)
-        if(radioCk[3].checked) setStatusProd(2)
-    }
-
     return (
         <div className="produtos-container fbrc">
             <div className="informacoes-produtos fbcc">
@@ -89,19 +78,19 @@ const Produtos = () => {
                 <div className="search-prod-container fbcc">
                     <input type="text" name='titulo' onChange={(e) => setSearchProd(e.target.value)} placeholder='Pesquisar nome...'/>
                     <div className="item-checkbox-prod fbrc" style={{marginTop: '15px'}}>
-                        <input id='checkbox-prod-0' type="radio" name='statusCk' value={-1} defaultChecked/>
+                        <input id='checkbox-prod-0' type="radio" name='statusCk' value={-1} defaultChecked onChange={(e) => setStatusProd(e.target.value)}/>
                         <label htmlFor='checkbox-prod-0'>Todos</label>
                     </div>
                     <div className="item-checkbox-prod fbrc">
-                        <input id='checkbox-prod-1' type="radio" name='statusCk' value={0}/>
+                        <input id='checkbox-prod-1' type="radio" name='statusCk' value={0} onChange={(e) => setStatusProd(e.target.value)}/>
                         <label htmlFor='checkbox-prod-1'>Somente disponiveis</label>
                     </div>
                     <div className="item-checkbox-prod fbrc">
-                        <input id='checkbox-prod-2' type="radio" name='statusCk' value={1}/>
+                        <input id='checkbox-prod-2' type="radio" name='statusCk' value={1} onChange={(e) => setStatusProd(e.target.value)}/>
                         <label htmlFor='checkbox-prod-2'>Somente vendidos</label>
                     </div>
                     <div className="item-checkbox-prod fbrc">
-                        <input id='checkbox-prod-3' type="radio" name='statusCk' value={2}/>
+                        <input id='checkbox-prod-3' type="radio" name='statusCk' value={2} onChange={(e) => setStatusProd(e.target.value)}/>
                         <label htmlFor='checkbox-prod-3'>Somente pagos</label>
                     </div>
                 </div>
@@ -113,19 +102,11 @@ const Produtos = () => {
             <div className="lista-produtos fbcc">
                 {ProdList.map(prod => (
                     (prod.tipo.toLowerCase() + ' ' + prod.descricao.toLowerCase()).includes(searchProd.toLowerCase()) ? (
-                        statusProd === prod.status ? (
-                            <div className={'cod-produto fbrc' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
-                                <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
-                                <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
-                                <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
-                            </div>
-                        ) : statusProd === -1 ? (
-                            <div className={'cod-produto fbrc' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
-                                <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
-                                <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
-                                <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
-                            </div>
-                        ) : null
+                        <div className={'cod-produto fbrc' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
+                            <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
+                            <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
+                            <p style={{flex: '1'}}>{`R$ ${prod.valor}`}</p>
+                        </div>
                     ) : null
                 ))}
             </div>
