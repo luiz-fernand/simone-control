@@ -21,7 +21,7 @@
 .produtos-acao-container {
   width: 95%;
   border-bottom: 1px solid black;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .produtos-acao-container a {
@@ -76,6 +76,7 @@
 .cod-produto {
   width: 95%;
   margin: 5px 15px;
+  padding: 10px 0;
   border-radius: 25px;
   text-align: center;
   background-color: white;
