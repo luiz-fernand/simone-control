@@ -95,7 +95,7 @@ const Clientes = () => {
                 <div className="search-clie-container fbcc">
                     <input type="text" name='titulo' onChange={(e) => setSearchClien(e.target.value)} placeholder='Pesquisar nome...'/>
                     <div className="item-checkbox-clien fbrc">
-                        <input id='pendentes-clien' type="checkbox" name='pendentes' onChange={() => handleClickChecked()}/>
+                        <input id='pendentes-clien' type="checkbox" name='pendentes' onChange={() => handleClickChecked()} style={{ marginRight: '5px' }}/>
                         <label htmlFor='pendentes-clien'>Somente pendentes</label>
                     </div>
                 </div>
