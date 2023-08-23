@@ -14,19 +14,13 @@ const Clientes = () => {
     const [ClienPen, setClienPen] = useState(0)
     const [selectedCliente, setSelectedCliente] = useState(null)
     const [searchClien, setSearchClien] = useState('')
+    const [Checked, setChecked] = useState(false)
 
     useEffect(() => {
         getClientes()
         getProdutos()
-        let pen = 0
-
-        ProdList.forEach((prod) => {
-            if(prod.status === 1) pen++
-        })
-
-        setClienPen(pen)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [Checked])
 
     const getClientes = async () => {
         try {
@@ -40,10 +34,23 @@ const Clientes = () => {
     const getProdutos = async () => {
         try {
             const res = await axios.get('http://localhost:8800/produtos')
+            const pen = []
+
+            res.data.forEach((prod) => {
+                if(prod.status === 1) pen.push(prod.cliente)
+            })
+
+            const unique = [...new Set(pen)]
+
+            setClienPen(unique.length)
             setProdList(res.data)
         } catch(error){
             console.log(error)
         }
+    }
+
+    const handleClickChecked = () => {
+        setChecked(document.getElementById('pendentes-clien').checked)
     }
 
     const ProdCli = (id) => {
@@ -88,7 +95,7 @@ const Clientes = () => {
                 <div className="search-clie-container fbcc">
                     <input type="text" name='titulo' onChange={(e) => setSearchClien(e.target.value)} placeholder='Pesquisar nome...'/>
                     <div className="item-checkbox-clien fbrc">
-                        <input id='pendentes-clien' type="checkbox" name='pendentes'/>
+                        <input id='pendentes-clien' type="checkbox" name='pendentes' onChange={() => handleClickChecked()}/>
                         <label htmlFor='pendentes-clien'>Somente pendentes</label>
                     </div>
                 </div>
@@ -98,7 +105,7 @@ const Clientes = () => {
             <div className="lista-clientes fbcc">
                 {ClienList.map((clien) => (
                     clien.nome.toLowerCase().includes(searchClien.toLowerCase()) ? (
-                        document.getElementById('pendentes-clien').checked ? (
+                        Checked === true ? (
                             ProdCli(clien.id)[1] > 0 ? (
                                 <div className={'cod-cliente fbrc' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>
                                     <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>#{clien.id}</p>
