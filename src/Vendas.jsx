@@ -125,7 +125,7 @@ const Vendas = () => {
                     <Link to={'/vendas/add'} className="fbrc"><MdAttachMoney style={{marginRight: '5px', fontSize: '20pt'}}/>VENDER</Link>
                 </div>
                 <div className="date-search-vendas fbcc">
-                    <p>Buscar por data:</p>
+                    <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>Buscar por data:</p>
                     <div className="fbrc">
                         <p style={{ marginRight: '15px' }}>De:</p>
                         <input type="date" name="data1" id="data-venda-1" onChange={() => getVendas()}/>
@@ -135,9 +135,9 @@ const Vendas = () => {
                         <input type="date" name="data2" id="data-venda-2" onChange={() => getVendas()}/>
                     </div>
                 </div>
-                <p style={{ marginBottom: '5px', }}>Nº DE VENDAS: <b>{VendList.length}</b></p>
+                <p style={{ margin: '20px 0 5px 0', }}>Nº DE VENDAS: <b>{VendList.length}</b></p>
                 <p style={{ margin: '5px 0', }}>TOTAL DAS VENDAS: <b>R$ {vendasTotais}</b></p>
-                <p style={{ marginTop: '5px', }}>PRODUTOS MOVIMENTADOS: <b>{totalProd}</b></p>
+                <p style={{ margin: '5px 0', }}>PRODUTOS MOVIMENTADOS: <b>{totalProd}</b></p>
             </div>
             <div className="lista-vendas fbcc">
                 {VendList.map((vend) => (
