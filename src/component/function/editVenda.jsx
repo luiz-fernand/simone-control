@@ -19,7 +19,6 @@ const EditarVenda = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
-    console.log(Venda)
     const getProdutos = async () => {
         try {
             const res = await axios.get('http://localhost:8800/produtos/')
@@ -84,11 +83,11 @@ const EditarVenda = () => {
                     <div className="fbrc">
                         <div className="item-form-add-venda fbcc">
                             <label htmlFor="id-add-vend">ID</label>
-                            <input type="text" name="id" id="id-add-vend" value={ Venda?.id } disabled/>
+                            <input type="text" name="id" id="id-add-vend" value={ Venda.id || '' } disabled/>
                         </div>
                         <div className="item-form-add-venda fbcc">
                             <label htmlFor="total-add-vend">Valor Total</label>
-                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ Venda?.valortotal } disabled/>
+                            <input type="number" step='any' name="valortotal" id="total-add-vend" value={ Venda.valortotal || '' } disabled/>
                         </div>
                     </div>
                     <div className="item-form-add-venda fbcc" style={{ width: '100%' }}>
@@ -97,7 +96,7 @@ const EditarVenda = () => {
                             name="descricao"
                             rows="4"
                             id="descricao-add-vend"
-                            value={Venda.descricao}
+                            value={ Venda.descricao || '' }
                             onChange={handleDescriptionChange}
                         />
                     </div>
@@ -108,7 +107,7 @@ const EditarVenda = () => {
                                 type="date"
                                 name="data"
                                 id="data-add-vend"
-                                value={Venda.data}
+                                value={ Venda.data || '' }
                                 onChange={handleDateChange}
                             />
                         </div>
@@ -118,7 +117,7 @@ const EditarVenda = () => {
                                 type="time"
                                 name="hora"
                                 id="hora-add-vend"
-                                value={Venda.hora}
+                                value={ Venda.hora || '' }
                                 onChange={handleTimeChange}
                             />
                         </div>
