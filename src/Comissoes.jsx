@@ -5,13 +5,19 @@ import { BiMoney } from 'react-icons/bi'
 import { GiPayMoney } from 'react-icons/gi'
 
 import './style/Comissoes.css'
+import ComiScreen from './component/ComiScreen'
 
 const Comissoes = () => {
     const [ Comissoes, setComissoes ] = useState([])
+    const [ Produtos, setProdutos ] = useState([])
+    const [ Clientes, setClientes ] = useState([])
     const [ ValorTT, setValorTT ] = useState(0.0)
+    const [selectedComissao, setSelectedComissao] = useState(null)
 
     useEffect(() => {
         getComissoes()
+        getProdutos()
+        getClientes()
     }, [])
 
     const getComissoes = async () => {
@@ -20,7 +26,6 @@ const Comissoes = () => {
 
         try {
             const res = await axios.get(`http://localhost:8800/comissoes/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
-            console.log(`http://localhost:8800/comissoes/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
             const preLista = []
             let vtt = 0.0
 
@@ -38,6 +43,64 @@ const Comissoes = () => {
         } catch(error){
             console.log(error)
         }
+    }
+
+    const getProdutos = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8800/produtos`)
+            setProdutos(res.data)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    const getClientes = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8800/clientes`)
+            setClientes(res.data)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    const desfazerComissao = async (com) => {
+        com.produtos.forEach(async (c) => {
+            const prodID = Produtos.findIndex((prod) => prod.id === c.id)
+
+            await axios.put(`http://localhost:8800/produtos/${c.id}`,{
+                tipo: Produtos[prodID].tipo,
+                descricao: Produtos[prodID].descricao,
+                tamanho: Produtos[prodID].tamanho,
+                valor: Produtos[prodID].valor,
+                status: 1
+            })
+            .then(({data}) => {
+                console.log(data)
+            })
+            .catch(({data}) => window.alert(data))
+        })
+
+        await axios.delete(`http://localhost:8800/comissoes/${com.id}`)
+        .then(({data}) => {
+            console.log(data)
+        })
+        .catch(({data}) => window.alert(data))
+        closeComiScreen()
+        getComissoes()
+    }
+
+    const excluirComissao = async (com) => {
+        
+    }
+    
+    const openComiScreen = (comiss) => {
+        setSelectedComissao(comiss)
+        document.documentElement.style.pointerEvents = 'none'
+    }
+    
+    const closeComiScreen = () => {
+        setSelectedComissao(null)
+        document.documentElement.style.pointerEvents = 'all'
     }
 
     return (
@@ -62,10 +125,13 @@ const Comissoes = () => {
                 <p>VALOR DAS COMISSÕES: <b>R$ { ValorTT }</b></p>
             </div>
             <div className="lista-comissoes fbcc">
-                {Comissoes.map((com) => (
-                    <div className="item-venda fbcc" key={com.id}>
+                {Comissoes.map((com) => {
+                    const cliIDX = Clientes.findIndex((cli) => cli.id === com.cliente)
+
+                    return (
+                    <div className="item-venda fbcc" onClick={() => openComiScreen(com)} key={com.id}>
                         <div className="id-box-item-venda fbrc">
-                            <p>#{com.id}</p>
+                            <p>#{com.id} - ({com.cliente}) {Clientes[cliIDX]?.nome}</p>
                             <p>{com.data}</p>
                         </div>
                         <div className="fbcc" style={{ width: '85%' }}>
@@ -73,8 +139,9 @@ const Comissoes = () => {
                             <p style={{ borderTop: '1px solid #ccc', margin: 0, padding: '15px 0', width: '100%' }}>TOTAL: <b>R$ {com.valor}</b></p>
                         </div>
                     </div>
-                ))}
+                )})}
             </div>
+            {selectedComissao && <ComiScreen comissao={selectedComissao} onClose={closeComiScreen} desfazer={desfazerComissao} excluir={excluirComissao}/>}
         </div>
     )
 }

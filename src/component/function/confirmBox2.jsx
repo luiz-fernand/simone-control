@@ -2,12 +2,12 @@ import React from 'react'
 
 const ConfirmBox = ({ item, desfazer, excluir, onClose }) => {
     const confirmDesfazer = () => {
-        var conf = window.confirm("Tem certeza que deseja DESFAZER a venda?")
+        var conf = window.confirm("Tem certeza que deseja DESFAZER?")
         if(conf === true) desfazer(item)
     }
 
     const confirmExcluir = () => {
-        var conf = window.confirm("Tem certeza que deseja EXCLUIR a VENDA e TODOS os seus PRODUTOS?")
+        var conf = window.confirm("Tem certeza que deseja EXCLUIR, incluindo TODOS os seus PRODUTOS?")
         if(conf === true) excluir(item)
     }
 
