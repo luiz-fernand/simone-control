@@ -18,10 +18,19 @@ export const getComissaoById = (req, res) => {
 })
 }
 
-export const getComissaoByStatus = (req, res) => {
-    const q = 'SELECT * FROM comissao WHERE `status` = ?'
+export const getComissaoBySData = (req, res) => {
+    const q = 'SELECT * FROM comissao WHERE `data` >= ?'
 
-    db.query(q, [req.params.status],(err, data) => {
+    db.query(q, [req.params.data1],(err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
+export const getComissaoByData = (req, res) => {
+    const q = 'SELECT * FROM comissao WHERE `data` >= ? AND `data` <= ?'
+
+    db.query(q, [req.params.data1, req.params.data2],(err, data) => {
         if(err) return res.json(err)
         return res.status(200).json(data)
     })
@@ -38,7 +47,7 @@ export const addComissao = (req, res) => {
         req.body.valor
     ]
 
-    db.query(q, [values],(err) => {
+    db.query(q, [ values ],(err) => {
         if(err) return res.json(err)
         return res.status(200).json('Comissão REGISTRADA!')
     })

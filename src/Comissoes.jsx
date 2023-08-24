@@ -15,8 +15,12 @@ const Comissoes = () => {
     }, [])
 
     const getComissoes = async () => {
+        const data1 = document.getElementById('data-venda-1').value
+        const data2 = document.getElementById('data-venda-2').value
+
         try {
-            const res = await axios.get('http://localhost:8800/comissoes')
+            const res = await axios.get(`http://localhost:8800/comissoes/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
+            console.log(`http://localhost:8800/comissoes/data/${(data1 === '' ? '20230101' : data1.replace(/-/g, '')) + (data2 === '' ? '' : ('-'+data2.replace(/-/g, '')))}`)
             const preLista = []
             let vtt = 0.0
 
@@ -47,14 +51,14 @@ const Comissoes = () => {
                     <p>Buscar por data:</p>
                     <div className="fbrc">
                         <p style={{ marginRight: '15px' }}>De:</p>
-                        <input type="date" name="data1" id="data-venda-1" />
+                        <input type="date" name="data1" id="data-venda-1"  onChange={() => getComissoes()}/>
                     </div>
                     <div className="fbrc">
                         <p style={{ marginRight: '15px' }}>Até:</p>
-                        <input type="date" name="data2" id="data-venda-2" />
+                        <input type="date" name="data2" id="data-venda-2"  onChange={() => getComissoes()}/>
                     </div>
                 </div>
-                <p style={{marginTop: '15px'}}>Nº DE COMISSÕES: <b>{ Comissoes.length }</b></p>
+                <p style={{marginTop: '15px', marginBottom: '10px'}}>Nº DE COMISSÕES: <b>{ Comissoes.length }</b></p>
                 <p>VALOR DAS COMISSÕES: <b>R$ { ValorTT }</b></p>
             </div>
             <div className="lista-comissoes fbcc">
