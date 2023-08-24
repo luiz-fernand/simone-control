@@ -9,38 +9,24 @@ const EditarProduto = () => {
     const { id } = useParams()
     const [Produto, setProduto] = useState([])
     const [Cliente, setCliente] = useState({})
-    const [attProd, setAttProd] = useState(0)
     const ref = useRef()
     
     document.documentElement.style.pointerEvents = 'all'
 
     useEffect(() => {
-        getClienteById()
+        getProdutoById()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
-    const getClienteById = async () => {
-        try {
-            const res = await axios.get(`http://localhost:8800/clientes/${Produto[0]?.cliente}`)
-            setCliente(res.data)
-        } catch(error){
-            console.log(error)
-        }
-    }
     
     const getProdutoById = async () => {
         try {
             const res = await axios.get(`http://localhost:8800/produtos/${id}`)
+            const resC = await axios.get(`http://localhost:8800/clientes/${res.data[0]?.cliente}`)
             setProduto(res.data)
-            getClienteById()
+            setCliente(resC.data)
         } catch(error){
             console.log(error)
         }
-    }
-
-    if(attProd === 0){
-        getProdutoById()
-        setAttProd(1)
     }
 
     const editarProd = async (e) => {
@@ -73,11 +59,11 @@ const EditarProduto = () => {
                         </div>
                         <div className="input-area-edit">
                             <label>Tipo</label>
-                            <input type="text" name='tipo' placeholder={Produto[0]?.tipo || ''}/>
+                            <input type="text" name='tipo' placeholder={Produto[0]?.tipo}/>
                         </div>
                         <div className="input-area-edit">
                             <label>Tamanho</label>
-                            <input type="text" name='tamanho' placeholder={Produto[0]?.tamanho || ''}/>
+                            <input type="text" name='tamanho' placeholder={Produto[0]?.tamanho}/>
                         </div>
                     <div className="input-area-edit">
                         <label>Status</label>
@@ -99,11 +85,11 @@ const EditarProduto = () => {
                         </div>
                         <div className="input-area-edit">
                             <label>Descrição</label>
-                            <textarea name='descricao' rows={5} placeholder={Produto[0]?.descricao || ''}/>
+                            <textarea name='descricao' rows={5} placeholder={Produto[0]?.descricao}/>
                         </div>
                         <div className="input-area-edit">
                             <label>Valor</label>
-                            <input type="number" step='0.01' name='valor' placeholder={Produto[0]?.valor || 0}/>
+                            <input type="number" step='0.01' name='valor' placeholder={Produto[0]?.valor}/>
                         </div>
                     </div>
                 </div>
