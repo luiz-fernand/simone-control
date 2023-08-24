@@ -81,7 +81,7 @@ const AdicionarVenda = () => {
             <div className="box-dados-add-venda fbcc">
                 <h1>Vender</h1>
                 <form style={{ width: '100%' }} ref={ref} onSubmit={salvarVenda}>
-                    <div className="item-form-add-venda fbcc" style={{ width: '100%' }}>
+                    <div className="item-form-add-venda fbcc" style={{ width: '100%', marginTop: '15px' }}>
                         <label htmlFor="descricao-add-vend">Descrição</label>
                         <textarea name="descricao" rows='4' id="descricao-add-vend" required/>
                     </div>

@@ -78,6 +78,8 @@
 
 .item-disp-add-venda {
     width: 95%;
+    padding: 10px 0;
+    margin: 1px 0;
     justify-content: space-around;
     cursor: pointer;
 }
