@@ -5,11 +5,9 @@ import axios from 'axios'
 import { AiOutlineCloseCircle, AiOutlineEdit } from 'react-icons/ai'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import '../style/components/VendScreen.css'
-import ConfirmBox from './function/confirmBox2'
 
-const ComiScreen = ({ comissao, onClose, desfazer, excluir }) => {
+const ComiScreen = ({ comissao, onClose, desfazer }) => {
     const [ ProdList, setProdList ] = useState([])
-    const [ ComissaoSelected, setComissaoSelected ] = useState(null)
 
     useEffect(() => {
         getProdutos()
@@ -26,13 +24,9 @@ const ComiScreen = ({ comissao, onClose, desfazer, excluir }) => {
     }
 
     const openConfirmScreen = (vend) => {
-        setComissaoSelected(vend)
+        var conf = window.confirm("Tem certeza que deseja EXCLUIR?")
+        if(conf === true) desfazer(vend.id)
     }
-    
-    const closeConfirmScreen = () => {
-        setComissaoSelected(null)
-    }
-
 
     return (
         <div className="venda-screen-overlay fbcc">
@@ -66,7 +60,6 @@ const ComiScreen = ({ comissao, onClose, desfazer, excluir }) => {
                         <p style={{ marginBottom: '5px' }}>TOTAL: <b>R$ { comissao.valor }</b></p>
                     </div>
                 </div>
-                {ComissaoSelected && <ConfirmBox item={comissao} excluir={excluir} desfazer={desfazer} onClose={closeConfirmScreen} />}
             </div>
         </div>
     )

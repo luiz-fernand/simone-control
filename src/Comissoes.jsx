@@ -88,10 +88,6 @@ const Comissoes = () => {
         closeComiScreen()
         getComissoes()
     }
-
-    const excluirComissao = async (com) => {
-        
-    }
     
     const openComiScreen = (comiss) => {
         setSelectedComissao(comiss)
@@ -141,7 +137,7 @@ const Comissoes = () => {
                     </div>
                 )})}
             </div>
-            {selectedComissao && <ComiScreen comissao={selectedComissao} onClose={closeComiScreen} desfazer={desfazerComissao} excluir={excluirComissao}/>}
+            {selectedComissao && <ComiScreen comissao={selectedComissao} onClose={closeComiScreen} desfazer={desfazerComissao}/>}
         </div>
     )
 }
