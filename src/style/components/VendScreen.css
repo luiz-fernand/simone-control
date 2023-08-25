@@ -20,6 +20,9 @@
 
 .venda-screen-info {
     width: 85%;
+    flex: 1.5;
+    justify-content: flex-start;
+    margin-top: 45px;
 }
 
 .venda-screen-info p {
@@ -52,6 +55,7 @@
 .venda-screen-acao {
     width: 100%;
     padding-top: 0;
+    flex: 0.5;
 }
 
 .btn-vndscr-1, .btn-vndscr-2 {

@@ -55,15 +55,15 @@ const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
                     { venda.produtos.map((prod) => {
                         const indxPro = ProdList.findIndex((pro) => pro.id === prod.id)
                         return (
-                        <div id='item-venda-list' className="fbrc" style={{ width: '100%', justifyContent: 'space-around' }} key={prod.id}>
-                            <p>#{ ProdList[indxPro]?.cliente }-{ ProdList[indxPro]?.id }</p>
-                            <p>{ ProdList[indxPro]?.tipo } { ProdList[indxPro]?.descricao }</p>
-                            <p>{ ProdList[indxPro]?.tamanho }</p>
-                            <p>R$ { ProdList[indxPro]?.valor }</p>
+                        <div id='item-venda-list' className="fbrc" style={{ width: '90%' }} key={prod.id}>
+                            <p style={{ flex: 0.7 }}>#{ ProdList[indxPro]?.cliente }-{ ProdList[indxPro]?.id }</p>
+                            <p style={{ flex: 2 }}>{ ProdList[indxPro]?.tipo } { ProdList[indxPro]?.descricao }</p>
+                            <p style={{ flex: 0.3 }}>{ ProdList[indxPro]?.tamanho }</p>
+                            <p style={{ flex: 0.5 }}>R$ { ProdList[indxPro]?.valor }</p>
                         </div>
                     )}) }
                     <div className="fbcc" style={{ width: '85%', borderTop: '1px solid #ccc', marginTop: '15px' }}>
-                        <p style={{ marginBottom: '5px' }}>TOTAL: <b>R$ { venda.valortotal }</b></p>
+                        <p style={{ marginTop: '15px' }}>TOTAL: <b>R$ { venda.valortotal }</b></p>
                     </div>
                 </div>
                 {VendaSelected && <ConfirmBox item={venda} excluir={excluirVenda} desfazer={desfazerVenda} onClose={closeConfirmScreen} />}
