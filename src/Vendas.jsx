@@ -88,6 +88,7 @@ const Vendas = () => {
             })
             .catch(({data}) => console.log(data))
         closeVendScreen()
+        getVendas()
     }
 
     const desfazerVenda = async (venda) => {
@@ -115,6 +116,7 @@ const Vendas = () => {
             })
             .catch(({data}) => console.log(data))
         closeVendScreen()
+        getVendas()
     }
     
     return (
