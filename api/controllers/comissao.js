@@ -37,11 +37,12 @@ export const getComissaoByData = (req, res) => {
 }
 
 export const addComissao = (req, res) => {
-    const q = 'INSERT INTO comissao(`cliente`, `descricao`, `data`, `hora`, `valor`) VALUES(?)'
+    const q = 'INSERT INTO comissao(`cliente`, `descricao`, `produtos`, `data`, `hora`, `valor`) VALUES(?)'
 
     const values = [
         req.body.cliente,
         req.body.descricao,
+        req.body.produtos,
         req.body.data,
         req.body.hora,
         req.body.valor
@@ -54,11 +55,12 @@ export const addComissao = (req, res) => {
 }
 
 export const editComissao = (req, res) => {
-    const q = 'UPDATE comissao SET `cliente` = ?, `descricao` = ?, `data` = ?, `hora` = ?, `valor` = ? WHERE `id` = ?'
+    const q = 'UPDATE comissao SET `cliente` = ?, `descricao` = ?, `produtos` = ?, `data` = ?, `hora` = ?, `valor` = ? WHERE `id` = ?'
 
     const values = [
         req.body.cliente,
         req.body.descricao,
+        req.body.produtos,
         req.body.data,
         req.body.hora,
         req.body.valor
