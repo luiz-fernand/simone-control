@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AiOutlineCloseCircle, AiOutlineEdit } from 'react-icons/ai'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import '../style/components/VendScreen.css'
-import ConfirmBox from './function/confirmBox2'
+import ConfirmBox from './function/confirmBox'
 
 const VendScreen = ({ venda, onClose, excluirVenda, desfazerVenda }) => {
     const [ ProdList, setProdList ] = useState([])
