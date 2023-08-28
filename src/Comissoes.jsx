@@ -63,8 +63,8 @@ const Comissoes = () => {
         }
     }
 
-    const desfazerComissao = async (com) => {
-        com.produtos.forEach(async (c) => {
+    const desfazerComissao = async () => {
+        selectedComissao.produtos.forEach(async (c) => {
             const prodID = Produtos.findIndex((prod) => prod.id === c.id)
 
             await axios.put(`http://localhost:8800/produtos/${c.id}`,{
@@ -80,7 +80,7 @@ const Comissoes = () => {
             .catch(({data}) => window.alert(data))
         })
 
-        await axios.delete(`http://localhost:8800/comissoes/${com.id}`)
+        await axios.delete(`http://localhost:8800/comissoes/${selectedComissao.id}`)
         .then(({data}) => {
             console.log(data)
         })
