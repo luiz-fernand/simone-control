@@ -110,10 +110,10 @@ const AdicionarVenda = () => {
                     {ProdList.map((pro) => (
                         (pro.tipo.toLowerCase() + ' ' + pro.descricao.toLowerCase()).includes(procurarProduto.toLowerCase()) ? (
                             <div className={`item-disp-add-venda fbrc ${ selectedItens.some((item) => item.id === pro.id) ? 'pro-select-add-vend' : '' }`} onClick={() => selecionarProduto(pro)} key={pro.id}>
-                                <p>{`#${ pro.cliente }-${ pro.id }`}</p>
-                                <p>{`${ pro.tipo } ${ pro.descricao }`}</p>
-                                <p>{ pro.tamanho }</p>
-                                <p>{`R$ ${ pro.valor }`}</p>
+                                <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ pro.cliente }-${ pro.id }`}</p>
+                                <p style={{ flex: 2 }}>{`${ pro.tipo } ${ pro.descricao }`}</p>
+                                <p style={{ flex: 0.3 }}>{ pro.tamanho }</p>
+                                <p style={{ flex: 0.4 }}>{`R$ ${ pro.valor }`}</p>
                             </div>
                         ) : null
                     ))}
@@ -124,10 +124,10 @@ const AdicionarVenda = () => {
                             const idxPro = ProdList.findIndex((p) => p.id === pro.id)
                             return (
                                 <div className='item-disp-add-venda fbrc pro-select-add-vend' onClick={() => selecionarProduto(ProdList[idxPro])} key={ProdList[idxPro].id}>
-                                    <p>{`#${ ProdList[idxPro].cliente }-${ ProdList[idxPro].id }`}</p>
-                                    <p>{`${ ProdList[idxPro].tipo } ${ ProdList[idxPro].descricao }`}</p>
-                                    <p>{ ProdList[idxPro].tamanho }</p>
-                                    <p>{`R$ ${ ProdList[idxPro].valor }`}</p>
+                                    <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ ProdList[idxPro].cliente }-${ ProdList[idxPro].id }`}</p>
+                                    <p style={{ flex: 2 }}>{`${ ProdList[idxPro].tipo } ${ ProdList[idxPro].descricao }`}</p>
+                                    <p style={{ flex: 0.3 }}>{ ProdList[idxPro].tamanho }</p>
+                                    <p style={{ flex: 0.4 }}>{`R$ ${ ProdList[idxPro].valor }`}</p>
                                 </div>
                         )})}
                     </div>
