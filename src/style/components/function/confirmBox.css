@@ -1,0 +1,36 @@
+.overlayCC {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cbContainer {
+    position: absolute;
+    z-index: 6;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    width: 300px;
+}
+
+.button-list-confirm {
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.button-list-confirm > button {
+    padding: 8px 16px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    width: fit-content;
+    font-weight: bold;
+}
