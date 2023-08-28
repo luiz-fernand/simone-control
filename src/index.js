@@ -22,6 +22,7 @@ import EditarVenda from './component/function/editVenda'
 
 import Comissoes from './Comissoes'
 import AdicionarComissao from './component/function/addCom'
+import EditarComissao from './component/function/editCom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -40,6 +41,7 @@ root.render(
         <Route path='/vendas/edit/:id' element={<EditarVenda/>}/>
       <Route path='/comissoes' element={<Comissoes/>}/>
         <Route path='/comissoes/add' element={<AdicionarComissao/>}/>
+        <Route path='/comissoes/edit/:id' element={<EditarComissao/>}/>
     </Routes>
   </BrowserRouter>
 )
