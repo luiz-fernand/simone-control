@@ -8,15 +8,18 @@ import '../style/components/VendScreen.css'
 
 const ComiScreen = ({ comissao, onClose, desfazer }) => {
     const [ ProdList, setProdList ] = useState([])
+    const [ Cliente, setCliente ] = useState([])
 
     useEffect(() => {
-        getProdutos()
+        getInfo()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const getProdutos = async () => {
+    const getInfo = async () => {
         try {
             const res = await axios.get('http://localhost:8800/produtos')
+            const resC = await axios.get(`http://localhost:8800/clientes/${comissao.cliente}`)
+            setCliente(resC.data[0])
             setProdList(res.data)
         } catch (error) {
             console.log(error)
@@ -35,7 +38,7 @@ const ComiScreen = ({ comissao, onClose, desfazer }) => {
                     <div className="venda-screen-info fbcc">
                         <AiOutlineCloseCircle className='close-venda-screen' onClick={ onClose } color='white'/>
                         <div className="fbrc" style={{ width: '100%', justifyContent: 'space-between' }}>
-                            <p><b><u>#{ comissao.id }</u></b></p>
+                            <p>#{comissao.id} - ({comissao.cliente}) {Cliente?.nome}</p>
                             <p>{ comissao.data }</p>
                         </div>
                         <p className='desc-venda-screen' style={{ marginTop: '15px', whiteSpace: 'pre-line', textAlign: 'center' }}><b>{ comissao.descricao }</b></p>
@@ -49,15 +52,15 @@ const ComiScreen = ({ comissao, onClose, desfazer }) => {
                     { comissao.produtos.map((prod) => {
                         const indxPro = ProdList.findIndex((pro) => pro.id === prod.id)
                         return (
-                        <div id='item-venda-list' className="fbrc" style={{ width: '100%', justifyContent: 'space-around' }} key={prod.id}>
-                            <p>#{ ProdList[indxPro]?.cliente }-{ ProdList[indxPro]?.id }</p>
-                            <p>{ ProdList[indxPro]?.tipo } { ProdList[indxPro]?.descricao }</p>
-                            <p>{ ProdList[indxPro]?.tamanho }</p>
-                            <p>R$ { ProdList[indxPro]?.valor }</p>
+                        <div id='item-venda-list' className="fbrc" style={{ width: '90%', justifyContent: 'space-around' }} key={prod.id}>
+                            <p style={{ flex: 0.7 }}>#{ ProdList[indxPro]?.cliente }-{ ProdList[indxPro]?.id }</p>
+                            <p style={{ flex: 2 }}>{ ProdList[indxPro]?.tipo } { ProdList[indxPro]?.descricao }</p>
+                            <p style={{ flex: 0.3 }}>{ ProdList[indxPro]?.tamanho }</p>
+                            <p style={{ flex: 0.5 }}>R$ { ProdList[indxPro]?.valor/2 }</p>
                         </div>
                     )}) }
                     <div className="fbcc" style={{ width: '85%', borderTop: '1px solid #ccc', marginTop: '15px' }}>
-                        <p style={{ marginBottom: '5px' }}>TOTAL: <b>R$ { comissao.valor }</b></p>
+                        <p style={{ marginTop: '15px' }}>TOTAL: <b>R$ { comissao.valor }</b></p>
                     </div>
                 </div>
             </div>
