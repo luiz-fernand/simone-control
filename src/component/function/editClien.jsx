@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-import '../../style/components/function/editProd.css'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { useParams } from 'react-router-dom'
 
@@ -28,12 +27,11 @@ const EditarCliente = () => {
 
     const editarProd = async (e) => {
         e.preventDefault()
-        const user = ref.current
 
         await axios.put(`http://localhost:8800/clientes/${id}`,{
-            nome: user.nome.value === '' ? Cliente.nome : user.nome.value,
-            referencia: user.referencia.value === '' ? Cliente.referencia : user.referencia.value,
-            telefone: user.telefone.value === '' ? Cliente.telefone : user.telefone.value
+            nome: Cliente.nome,
+            referencia: Cliente.referencia,
+            telefone: Cliente.telefone
         })
         .then(({data}) => {
             window.alert(data)
@@ -42,7 +40,20 @@ const EditarCliente = () => {
         .catch(({data}) => window.alert(data))
     }
 
+    const handleEditNome = (e) => {
+        const newNome = e.target.value
+        setCliente((cli) => ({ ...cli, nome: newNome }))
+    }
 
+    const handleEditReferencia = (e) => {
+        const newReferencia = e.target.value
+        setCliente((cli) => ({ ...cli, referencia: newReferencia }))
+    }
+
+    const handleEditTelefone = (e) => {
+        const newTelefone = e.target.value
+        setCliente((cli) => ({ ...cli, telefone: newTelefone }))
+    }
 
     return (
         <div className="editar-produto-container">
@@ -54,15 +65,15 @@ const EditarCliente = () => {
                 </div>
                 <div className="input-area-add-cli">
                     <label>Nome</label>
-                    <input type="text" name='nome' placeholder={Cliente.nome}/>
+                    <input type="text" name='nome' value={Cliente.nome || ''} onChange={(e) => handleEditNome(e)}/>
                 </div>
                 <div className="input-area-add-cli">
                     <label>Referência</label>
-                    <input type="text" name='referencia' placeholder={Cliente.referencia}/>
+                    <input type="text" name='referencia' value={Cliente.referencia || ''} onChange={(e) => handleEditReferencia(e)}/>
                 </div>
                 <div className="input-area-add-cli">
                     <label>Telefone</label>
-                    <input type="text" name='telefone' placeholder={Cliente?.telefone}/>
+                    <input type="text" name='telefone' value={Cliente.telefone || ''} onChange={(e) => handleEditTelefone(e)}/>
                 </div>
                 <button type='submit'><AiOutlineEdit style={{fontSize: '15pt', marginRight: '5px'}}/>EDITAR</button>
             </form>
