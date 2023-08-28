@@ -14,7 +14,7 @@ const NavBar = () => {
                 <NavLink className='nav-item fbrc' to='/vendas'>Vendas</NavLink>
                 <NavLink className='nav-item fbrc' to='/comissoes'>Comissões</NavLink>
             </nav>
-            <p style={{color: 'lightgray', fontSize: '10pt'}}>V0.9 - by: LZ TI</p>
+            <p style={{color: 'lightgray', fontSize: '10pt'}}>V1.0 - by: LZ TI</p>
         </header>
     )
 }
