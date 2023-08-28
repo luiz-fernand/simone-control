@@ -17,6 +17,10 @@
     margin-top: 75px;
 }
 
+.form-editar-container > h1 {
+    margin: 10px 0;
+}
+
 .conteudo-form-edit-prod {
     display: flex;
     flex-direction: row;
