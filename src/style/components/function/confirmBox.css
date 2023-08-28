@@ -16,12 +16,11 @@
     background-color: white;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    width: 300px;
 }
 
 .button-list-confirm {
     justify-content: space-between;
-    margin-top: 16px;
+    margin-top: 15px;
 }
 
 .button-list-confirm > button {
@@ -33,4 +32,36 @@
     color: white;
     width: fit-content;
     font-weight: bold;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#btn-1 {
+    background-color: #3498db;
+}
+
+#btn-2 {
+    background-color: #e74c3c;
+}
+
+#btn-3 {
+    background-color: #ccc;
+    color: black;
+}
+
+#btn-1:hover {
+    background-color: white;
+    border: 1px solid #3498db;
+    color: #3498db;
+}
+
+#btn-2:hover {
+    background-color: white;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+#btn-3:hover {
+    background-color: white;
+    border: 1px solid black;
 }
