@@ -101,7 +101,7 @@ const Produtos = () => {
             </div>
             <div className="lista-produtos fbcc">
                 {ProdList.map(prod => (
-                    (prod.tipo.toLowerCase() + ' ' + prod.descricao.toLowerCase()).includes(searchProd.toLowerCase()) ? (
+                    (prod.tipo?.toLowerCase() + ' ' + prod.descricao?.toLowerCase()).includes(searchProd?.toLowerCase()) ? (
                         <div className={'cod-produto fbrc' + (prod.status === 2 ? ' indisp' : (prod.status === 1 ? ' process' : ''))} onClick={() => openProdScreen(prod)} key={prod.id}>
                             <p style={{flex: '1', textAlign: 'start', marginLeft: '25px'}}>{`#${prod.cliente}-${prod.id}`}</p>
                             <p style={{flex: '2'}}><b>{`${prod.tipo} ${prod.descricao}`}</b></p>
