@@ -39,7 +39,7 @@ const Comissoes = () => {
             })
 
             setValorTT(vtt)
-            setComissoes(preLista)
+            setComissoes(preLista.reverse())
         } catch(error){
             console.log(error)
         }

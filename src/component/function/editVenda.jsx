@@ -133,12 +133,12 @@ const EditarVenda = () => {
                     {Venda.produtos !== undefined ? Venda.produtos.map((p) => {
                         const idxProd = ProdList.findIndex((pro) => pro.id === p.id)
                         return (
-                            (ProdList[idxProd].tipo.toLowerCase() + ' ' + ProdList[idxProd].descricao.toLowerCase()).includes(procurarProduto.toLowerCase()) ? (
+                            (ProdList[idxProd].tipo?.toLowerCase() + ' ' + ProdList[idxProd].descricao?.toLowerCase()).includes(procurarProduto?.toLowerCase()) ? (
                                 <div className={`item-disp-add-venda fbrc pro-select-add-vend`} key={p.id}>
-                                    <p>{`#${ ProdList[idxProd].cliente }-${ ProdList[idxProd].id }`}</p>
-                                    <p>{`${ ProdList[idxProd].tipo } ${ ProdList[idxProd].descricao }`}</p>
-                                    <p>{ ProdList[idxProd].tamanho }</p>
-                                    <p>{`R$ ${ ProdList[idxProd].valor }`}</p>
+                                    <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ ProdList[idxProd].cliente }-${ ProdList[idxProd].id }`}</p>
+                                    <p style={{ flex: 2 }}>{`${ ProdList[idxProd].tipo } ${ ProdList[idxProd].descricao }`}</p>
+                                    <p style={{ flex: 0.3 }}>{ ProdList[idxProd].tamanho }</p>
+                                    <p style={{ flex: 0.4 }}>{`R$ ${ ProdList[idxProd].valor }`}</p>
                                 </div>
                             ) : null
                         )

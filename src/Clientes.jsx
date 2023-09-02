@@ -104,7 +104,7 @@ const Clientes = () => {
             </div>
             <div className="lista-clientes fbcc">
                 {ClienList.map((clien) => (
-                    clien.nome.toLowerCase().includes(searchClien.toLowerCase()) ? (
+                    clien.nome?.toLowerCase().includes(searchClien?.toLowerCase()) ? (
                         Checked === true ? (
                             ProdCli(clien.id)[1] > 0 ? (
                                 <div className={'cod-cliente fbrc' + (ProdCli(clien.id)[1] > 0 ? ' cliente-pendente' : '')} onClick={() => openClienScreen(clien)} key={clien.id}>

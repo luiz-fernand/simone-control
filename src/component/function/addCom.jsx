@@ -121,7 +121,7 @@ const AdicionarComissao = () => {
                 <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Cliente...' onChange={(e) => setProcurarCliente(e.target.value)}/>
                 <div className="itens-lista-add-vend fbcc" style={{ flex: 1 }}>
                     {Clientes.map((cli) => (
-                        cli.nome.toLowerCase().includes(procurarCliente.toLowerCase()) ? (
+                        cli.nome?.toLowerCase().includes(procurarCliente?.toLowerCase()) ? (
                             <div className={`item-disp-add-venda fbrc ${ selectedItem.id === cli.id ? 'pro-select-add-vend' : '' }`} onClick={() => setSelectedItem(cli)} key={cli.id}>
                                 <p style={{ paddingLeft: '10px', flex: 0.5 }}>{`#${ cli.id }`}</p>
                                 <p style={{ flex: 2 }}>{ cli.nome }</p>

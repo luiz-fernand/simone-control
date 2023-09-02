@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
 import { GiConfirmed } from 'react-icons/gi'
+import { BiRefresh } from 'react-icons/bi'
 import '../../style/components/function/addVendas.css'
 
 const AdicionarVenda = () => {
@@ -105,10 +106,13 @@ const AdicionarVenda = () => {
                 </form>
             </div>
             <div className="box-itens-venda fbcc">
-                <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' onChange={(e) => setProcurarProduto(e.target.value)}/>
+                <div className="fbrc" style={{ width: '100%' }}>
+                    <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' onChange={(e) => setProcurarProduto(e.target.value)}/>
+                    <BiRefresh style={{ margin: '0 5px', fontSize: '25pt', cursor: 'pointer' }} onClick={() => getProdutos()}/>
+                </div>
                 <div className="itens-lista-add-vend fbcc" style={{ flex: 1 }}>
                     {ProdList.map((pro) => (
-                        (pro.tipo.toLowerCase() + ' ' + pro.descricao.toLowerCase()).includes(procurarProduto.toLowerCase()) ? (
+                        (pro.tipo?.toLowerCase() + ' ' + pro.descricao?.toLowerCase()).includes(procurarProduto?.toLowerCase()) ? (
                             <div className={`item-disp-add-venda fbrc ${ selectedItens.some((item) => item.id === pro.id) ? 'pro-select-add-vend' : '' }`} onClick={() => selecionarProduto(pro)} key={pro.id}>
                                 <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ pro.cliente }-${ pro.id }`}</p>
                                 <p style={{ flex: 2 }}>{`${ pro.tipo } ${ pro.descricao }`}</p>

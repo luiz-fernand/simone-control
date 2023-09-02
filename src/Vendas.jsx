@@ -46,7 +46,7 @@ const Vendas = () => {
 
             setVendasTotais(vt)
             setTotalProd(cont)
-            setVendList(tempList)
+            setVendList(tempList.reverse())
         } catch(error) {
             console.log(error)
         }
@@ -141,7 +141,7 @@ const Vendas = () => {
                 <p style={{ margin: '5px 0', }}>TOTAL DAS VENDAS: <b>R$ {vendasTotais}</b></p>
                 <p style={{ margin: '5px 0', }}>PRODUTOS MOVIMENTADOS: <b>{totalProd}</b></p>
             </div>
-            <div className="lista-vendas fbcc">
+            <div id='lista-vendas' className="lista-vendas fbcc">
                 {VendList.map((vend) => (
                     <div className="item-venda fbcc" onClick={() => openVendScreen(vend[0])} key={vend[0].id}>
                         <div className="id-box-item-venda fbrc">
