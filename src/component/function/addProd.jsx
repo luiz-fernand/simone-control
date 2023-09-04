@@ -51,7 +51,7 @@ const AdicionarProduto = () => {
                     <select name="cliente" required>
                         <option value="">Selecione um cliente...</option>
                         {ListaCli.map((cli) => (
-                            <option value={cli.id} key={cli.id}>{`${cli.nome} - #${cli.id}`}</option>
+                            <option value={cli.id} key={cli.id}>{`${cli.id} - ${cli.nome}`}</option>
                         ))}
                     </select>
                 </div>
