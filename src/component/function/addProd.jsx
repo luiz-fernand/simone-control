@@ -6,16 +6,29 @@ import {AiOutlinePlus} from 'react-icons/ai'
 
 const AdicionarProduto = () => {
     const [ListaCli, setListaCli] = useState([])
+    const [Produtos, setProdutos] = useState([])
     const ref = useRef()
 
     useEffect(() => {
         getClientes()
+        getProdutos()
     }, [])
 
     const getClientes = async () => {
         try {
             const res = await axios.get('http://localhost:8800/clientes')
             setListaCli(res.data)
+        } catch(error){
+            console.log(error)
+        }
+    }
+    
+    console.log(Produtos)
+
+    const getProdutos = async () => {
+        try {
+            const res = await axios.get('http://localhost:8800/produtos')
+            setProdutos(res.data.sort())
         } catch(error){
             console.log(error)
         }
@@ -33,7 +46,7 @@ const AdicionarProduto = () => {
             valor: user.valor.value
         })
         .then(({data}) => {
-            window.alert(data)
+            window.alert(`${data} ID: #${user.cliente.value}-${Produtos[Produtos.length - 1].id + 1}`)
             const clienID = document.getElementById('form-add-prod').cliente.value
             document.getElementById('form-add-prod').reset()
             document.getElementById('form-add-prod').cliente.value = clienID

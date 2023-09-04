@@ -1,6 +1,15 @@
 import { db } from "../db.js"
 
 export const getProdutos = (_, res) => {
+    const q = 'SELECT * FROM produto'
+
+    db.query(q, (err, data) => {
+        if(err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
+export const getProdutosOrd = (_, res) => {
     const q = 'SELECT * FROM produto ORDER BY cliente ASC'
 
     db.query(q, (err, data) => {
