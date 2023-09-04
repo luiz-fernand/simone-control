@@ -80,7 +80,7 @@ const AdicionarVenda = () => {
     return (
         <div className="adicionar-venda-container fbrc">
             <div className="box-dados-add-venda fbcc">
-                <h1>Vender</h1>
+                <h1 style={{ margin: '20px 0 10px 0' }}>Vender</h1>
                 <form style={{ width: '100%' }} ref={ref} onSubmit={salvarVenda}>
                     <div className="item-form-add-venda fbcc" style={{ width: '100%', marginTop: '15px' }}>
                         <label htmlFor="descricao-add-vend">Descrição</label>

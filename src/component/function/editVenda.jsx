@@ -78,7 +78,7 @@ const EditarVenda = () => {
     return (
         <div className="adicionar-venda-container fbrc">
             <div className="box-dados-add-venda fbcc">
-                <h1>Venda</h1>
+                <h1 style={{ margin: '20px 0 10px 0' }}>Venda</h1>
                 <form style={{ width: '100%' }} ref={ref} onSubmit={editarVenda}>
                     <div className="fbrc">
                         <div className="item-form-add-venda fbcc">
@@ -128,19 +128,17 @@ const EditarVenda = () => {
                 </form>
             </div>
             <div className="box-itens-venda fbcc">
-                <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' onChange={(e) => setProcurarProduto(e.target.value)}/>
+                <input type="text" id='pesquisa-add-vend' placeholder='Adicionar item por ID...' onChange={(e) => setProcurarProduto(e.target.value)}/>
                 <div className="itens-lista-add-vend fbcc">
                     {Venda.produtos !== undefined ? Venda.produtos.map((p) => {
                         const idxProd = ProdList.findIndex((pro) => pro.id === p.id)
                         return (
-                            (ProdList[idxProd].tipo?.toLowerCase() + ' ' + ProdList[idxProd].descricao?.toLowerCase()).includes(procurarProduto?.toLowerCase()) ? (
-                                <div className={`item-disp-add-venda fbrc pro-select-add-vend`} key={p.id}>
-                                    <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ ProdList[idxProd].cliente }-${ ProdList[idxProd].id }`}</p>
-                                    <p style={{ flex: 2 }}>{`${ ProdList[idxProd].tipo } ${ ProdList[idxProd].descricao }`}</p>
-                                    <p style={{ flex: 0.3 }}>{ ProdList[idxProd].tamanho }</p>
-                                    <p style={{ flex: 0.4 }}>{`R$ ${ ProdList[idxProd].valor }`}</p>
-                                </div>
-                            ) : null
+                            <div className={`item-disp-add-venda fbrc pro-select-add-vend`} key={p.id}>
+                                <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ ProdList[idxProd].cliente }-${ ProdList[idxProd].id }`}</p>
+                                <p style={{ flex: 2 }}>{`${ ProdList[idxProd].tipo } ${ ProdList[idxProd].descricao }`}</p>
+                                <p style={{ flex: 0.3 }}>{ ProdList[idxProd].tamanho }</p>
+                                <p style={{ flex: 0.4 }}>{`R$ ${ ProdList[idxProd].valor }`}</p>
+                            </div>
                         )
                     }) : null}
                 </div>
