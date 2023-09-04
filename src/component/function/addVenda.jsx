@@ -9,6 +9,7 @@ const AdicionarVenda = () => {
     const [ ProdList, setProdList ] = useState([])
     const [ selectedItens, setSelectedItens ] = useState([])
     const [ procurarProduto, setProcurarProduto ] = useState('')
+    const [ procurarIDProduto, setProcurarIDProduto ] = useState('')
     const [ valorTotal, setValorTotal ] = useState(0.0)
     const ref = useRef()
 
@@ -107,18 +108,21 @@ const AdicionarVenda = () => {
             </div>
             <div className="box-itens-venda fbcc">
                 <div className="fbrc" style={{ width: '100%' }}>
-                    <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' onChange={(e) => setProcurarProduto(e.target.value)}/>
+                    <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar ID...' style={{ flex: 0.5, marginRight: '2px' }} onChange={(e) => setProcurarIDProduto(e.target.value)}/>
+                    <input type="text" id='pesquisa-add-vend' placeholder='Pesquisar Item...' style={{ flex: 1 }} onChange={(e) => setProcurarProduto(e.target.value)}/>
                     <BiRefresh style={{ margin: '0 5px', fontSize: '25pt', cursor: 'pointer' }} onClick={() => getProdutos()}/>
                 </div>
                 <div className="itens-lista-add-vend fbcc" style={{ flex: 1 }}>
                     {ProdList.map((pro) => (
-                        (pro.tipo?.toLowerCase() + ' ' + pro.descricao?.toLowerCase()).includes(procurarProduto?.toLowerCase()) ? (
-                            <div className={`item-disp-add-venda fbrc ${ selectedItens.some((item) => item.id === pro.id) ? 'pro-select-add-vend' : '' }`} onClick={() => selecionarProduto(pro)} key={pro.id}>
-                                <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ pro.cliente }-${ pro.id }`}</p>
-                                <p style={{ flex: 2 }}>{`${ pro.tipo } ${ pro.descricao }`}</p>
-                                <p style={{ flex: 0.3 }}>{ pro.tamanho }</p>
-                                <p style={{ flex: 0.4 }}>{`R$ ${ pro.valor }`}</p>
-                            </div>
+                        (`#${pro.cliente}-${pro.id}`).includes(procurarIDProduto) ? (
+                            (pro.tipo?.toLowerCase() + ' ' + pro.descricao?.toLowerCase()).includes(procurarProduto?.toLowerCase()) ? (
+                                <div className={`item-disp-add-venda fbrc ${ selectedItens.some((item) => item.id === pro.id) ? 'pro-select-add-vend' : '' }`} onClick={() => selecionarProduto(pro)} key={pro.id}>
+                                    <p style={{ flex: 0.61, paddingLeft: '10px' }}>{`#${ pro.cliente }-${ pro.id }`}</p>
+                                    <p style={{ flex: 2 }}>{`${ pro.tipo } ${ pro.descricao }`}</p>
+                                    <p style={{ flex: 0.3 }}>{ pro.tamanho }</p>
+                                    <p style={{ flex: 0.4 }}>{`R$ ${ pro.valor }`}</p>
+                                </div>
+                            ) : null
                         ) : null
                     ))}
                 </div>
