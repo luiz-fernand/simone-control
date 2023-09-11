@@ -47,6 +47,7 @@ const AdicionarProduto = () => {
         })
         .then(({data}) => {
             window.alert(`${data} ID: #${user.cliente.value}-${Produtos[Produtos.length - 1].id + 1}`)
+            getProdutos()
             const clienID = document.getElementById('form-add-prod').cliente.value
             document.getElementById('form-add-prod').reset()
             document.getElementById('form-add-prod').cliente.value = clienID
