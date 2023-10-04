@@ -1,34 +1,42 @@
-# Simone's Stock Control System v0.9
+# Simone's Stock Control System v1.0
 
 *Made by: [Luiz F Souza](https://www.linkedin.com/in/luiz-fernando-de-souza-725950187/) - LZ TI*
 
 ## Informations
 
-Um sistema de controle de estoque para o brechó da Simone.
+Um sistema de controle de estoque, venda e comissão para o brechó da Simone.
+
+### Front-end
 
 Feito com as tecnologias:
  - HTML
  - CSS
+ - JavaScript
  - React.js
  - Node.js
- - SQL
+ - MySQL
 
+E com as bibliotecas:
+ - Axios
+ - React Router
+ - React Icons
 
-Ele contém até o momento 3 páginas de funções básicas:
+Ele contém 5 páginas de funções:
  - Início
  - Produtos
  - Clientes
-
-Feito a base de CRUD, com funções de Adicionar, Consultar, Editar e Excluir cada informação.
-
-## Final Project
-
-No projeto final deverá ser apresentado, além das páginas já ditas, mais 3 que não estão presentes no programa de testes, que são:
  - Vendas
  - Comissões
- - Relatórios (opcional)
 
-A fim de criar uma super automação nos processos de gerência de estoque, controle de vendas e comissões.
+### Back-end
+
+Feito a API na base CRUD com servidor Node, com funções de Adicionar, Consultar, Editar e Excluir cada informação do banco de dados.
+
+Utilizando as bibliotecas:
+ - Cors
+ - MySQL
+ - Express
+ - Nodemon
 
 
 Legenda:
