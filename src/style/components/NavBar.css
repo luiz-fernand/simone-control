@@ -1,30 +1,30 @@
 header {
-    position: fixed;
-    justify-content: space-around !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    height: 75px;
-    background-color: black;
-    color: white;
+	position: fixed;
+	justify-content: space-around !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: auto;
+	height: 75px;
+	background-color: black;
+	color: white;
 }
 
 .nav-item {
-    text-decoration: none;
-    color: white;
-    padding: 0 15px;
-    height: 75px;
-    transition: all 0.2s ease-in-out;
-    font-size: 15pt;
+	text-decoration: none;
+	color: white;
+	padding: 0 15px;
+	height: 75px;
+	transition: all 0.2s ease-in-out;
+	font-size: 15pt;
 }
 
 .nav-item:hover {
-    background-color: #444444;
-    border-bottom: 5px solid #ab2b33;
+	background-color: #444444;
+	border-bottom: 5px solid #ab2b33;
 }
 
 nav a.active {
-    background-color: #101010;
-    border-bottom: 5px solid #ab2b33;
+	background-color: #101010;
+	border-bottom: 5px solid #ab2b33;
 }

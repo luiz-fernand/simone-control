@@ -26,22 +26,22 @@ import EditarComissao from './component/function/editCom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <BrowserRouter>
-    <NavBar/>
-    <Routes>
-      <Route path='/' element={<Inicio/>}/>
-      <Route path='/produtos' element={<Produtos/>}/>
-        <Route path='/produtos/add' element={<AdicionarProduto/>}/>
-        <Route path='/produtos/edit/:id' element={<EditarProduto/>}/>
-      <Route path='/clientes' element={<Clientes/>}/>
-        <Route path='/clientes/add' element={<AdicionarCliente/>}/>
-        <Route path='/clientes/edit/:id' element={<EditarCliente/>}/>
-      <Route path='/vendas' element={<Vendas/>}/>
-        <Route path='/vendas/add' element={<AdicionarVenda/>}/>
-        <Route path='/vendas/edit/:id' element={<EditarVenda/>}/>
-      <Route path='/comissoes' element={<Comissoes/>}/>
-        <Route path='/comissoes/add' element={<AdicionarComissao/>}/>
-        <Route path='/comissoes/edit/:id' element={<EditarComissao/>}/>
-    </Routes>
-  </BrowserRouter>
+	<BrowserRouter>
+		<NavBar/>
+		<Routes>
+			<Route path='/' element={<Inicio/>}/>
+			<Route path='/produtos' element={<Produtos/>}/>
+				<Route path='/produtos/add' element={<AdicionarProduto/>}/>
+				<Route path='/produtos/edit/:id' element={<EditarProduto/>}/>
+			<Route path='/clientes' element={<Clientes/>}/>
+				<Route path='/clientes/add' element={<AdicionarCliente/>}/>
+				<Route path='/clientes/edit/:id' element={<EditarCliente/>}/>
+			<Route path='/vendas' element={<Vendas/>}/>
+				<Route path='/vendas/add' element={<AdicionarVenda/>}/>
+				<Route path='/vendas/edit/:id' element={<EditarVenda/>}/>
+			<Route path='/comissoes' element={<Comissoes/>}/>
+				<Route path='/comissoes/add' element={<AdicionarComissao/>}/>
+				<Route path='/comissoes/edit/:id' element={<EditarComissao/>}/>
+		</Routes>
+	</BrowserRouter>
 )

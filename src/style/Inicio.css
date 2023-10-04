@@ -1,9 +1,9 @@
 .inicio-container {
-  min-height: 100vmin;
+	min-height: 100vmin;
 }
 
 .painel-info-inicio, .bem-vindo-inicio, .painel-acao-inicio {
-  flex: 1;
-  margin-top: 75px;
-  height: 87vmin;
+	flex: 1;
+	margin-top: 75px;
+	height: 87vmin;
 }
